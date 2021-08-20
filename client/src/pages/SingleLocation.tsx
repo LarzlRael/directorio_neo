@@ -2,12 +2,15 @@
 import { Indicator } from '../components/Indicator'
 import { IconFilterList } from '../components/IconFilter';
 import { Cards } from '../components/Cards';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { HeaderBlack } from '../components/HeaderBlack';
 import styled from 'styled-components';
+import { PymeContext } from '../context/PymeContext';
 
 
 export const SingleLocation = () => {
+
+    const { allPymes, getAllPymes } = useContext(PymeContext);
     useEffect(() => {
         const prevTitle = document.title;
         document.title = "New tittle";
@@ -15,6 +18,11 @@ export const SingleLocation = () => {
             document.title = prevTitle;
         }
     }, []);
+    useEffect(() => {
+        getAllPymes();
+        console.log(allPymes);
+    }, []);
+
 
 
     return (
@@ -27,13 +35,22 @@ export const SingleLocation = () => {
 
             <GridContainer className="cards-container">
 
+                {/* <Cards />
                 <Cards />
                 <Cards />
                 <Cards />
                 <Cards />
                 <Cards />
-                <Cards />
-                <Cards />
+                <Cards /> */}
+                {allPymes.map(({ nombre, urlImages, _id, verificado, redes_sociales }) => (
+                    <Cards
+                        nombre={nombre}
+                        _id={_id}
+                        urlImages={urlImages[0]}
+                        verificado={verificado}
+                        redes_sociales={redes_sociales}
+                    />
+                ))}
 
             </GridContainer>
         </div>

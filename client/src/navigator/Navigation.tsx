@@ -33,7 +33,7 @@ export const NavigatorMain = () => {
                 <Switch>
                     <Route path="/" exact component={MainPage} />
                     <Route path="/otrapagina" exact component={Page2} />
-                    <Route path="/single-location/:title/details" exact component={PlaceDetails} />
+                    <Route path="/single-location/:title/details/:id" exact component={PlaceDetails} />
                     <Route path="/single-location/:title" exact component={SingleLocation} />
                 </Switch>
             </Suspense>

@@ -1,15 +1,23 @@
 import { BagAddOutline, BeakerOutline, EyeOutline } from "react-ionicons"
 import { Link } from "react-router-dom";
+import { RedesSociale } from '../interfaces/pymeResponse';
 
+interface propsCard {
+    _id: string;
+    urlImages: string;
+    verificado: string;
+    nombre: string;
+    redes_sociales: RedesSociale[];
+}
 
-export const Cards = () => {
+export const Cards = ({ nombre, urlImages, redes_sociales, _id }: propsCard) => {
     return (
         <div className="single-card flex">
-            <Link to="/single-location/information-tecnology/details">
+            <Link to={`/single-location/information-tecnology/details/${_id}`}>
                 <img
-                className="main-image"
-                    src="https://i.pinimg.com/originals/86/b2/52/86b2521ebaa17c8a89f85609809bd9a6.webp"
-                    alt=""
+                    className="main-image"
+                    src={urlImages ? urlImages : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'}
+                    alt={nombre}
                 />
             </Link>
             <div className="contenido">
@@ -19,9 +27,9 @@ export const Cards = () => {
                     marginBottom: '1rem',
                     fontWeight: 500,
                     fontSize: '18px',
-                }}>The British Museum</label>
+                }}>{nombre}</label>
 
-                <LabelAndIcon icon={
+                {/*   <LabelAndIcon icon={
                     <BagAddOutline
                         color="#7a82a6"
                         height="20px"
@@ -38,8 +46,18 @@ export const Cards = () => {
                     />
                 }
                     label="De contacto"
-                />
-
+                /> */}
+                {redes_sociales.map(red_social => (
+                    <LabelAndIcon icon={
+                        <BagAddOutline
+                            color="#7a82a6"
+                            height="20px"
+                            width="20px"
+                        />
+                    }
+                        label={red_social.nombre}
+                    />
+                ))}
                 <div className="info-card flex">
                     <LabelAndIcon icon={
                         <BeakerOutline
