@@ -10,6 +10,7 @@ export interface PymeModel extends Document {
 
   telefono: string;
   localizacion: string;
+  coords: { lat: string; lng: string };
   direccion: string;
   description: string;
   redes_sociales: RedesSocialesDto[];

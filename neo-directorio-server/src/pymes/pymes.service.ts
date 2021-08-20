@@ -4,6 +4,7 @@ import { UploadApiResponse, v2 } from 'cloudinary';
 import { Model } from 'mongoose';
 import { PymeDTO, RedesSocialesDto } from './dto/pyme.dto';
 import { PymeModel } from './interfaces/project.interface';
+import { verifyValidId } from '../utils';
 import toStream = require('buffer-to-stream');
 
 @Injectable()
@@ -12,7 +13,8 @@ export class PymesService {
 
   async addnewPyme(pymeDTO: PymeDTO) {
     const pyme = new this.pymeModel(pymeDTO);
-    await pyme.save();
+    /* await pyme.save(); */
+    console.log(pyme);
   }
   async getOnePyme(id: string) {
     const onePyme = await this.pymeModel.findOne({ _id: id });
@@ -29,7 +31,7 @@ export class PymesService {
   ): Promise<boolean> {
     const getPyme = await this.pymeModel.findOne({ _id: id });
 
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+    if (verifyValidId(id)) {
       if (getPyme) {
         getPyme.redes_sociales.push(socialNetworks);
         await getPyme.save();

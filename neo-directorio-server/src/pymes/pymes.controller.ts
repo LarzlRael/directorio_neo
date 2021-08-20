@@ -22,9 +22,12 @@ export class PymesController {
     return this.pymeService.getAllPymes();
   }
   @Post('/newPyme')
-  async newPyme(@Body() pymeDTO: PymeDTO) {
-    console.log(pymeDTO);
-    /* return await this.pymeService.addnewPyme(pymeDTO); */
+  async newPyme(@Res() res: Response, @Body() pymeDTO: PymeDTO) {
+    await this.pymeService.addnewPyme(pymeDTO);
+    return res.json({
+      ok: true,
+      message: 'nueva pyme agregada correctamente',
+    });
   }
   @Get('/:id')
   getOne(@Param('id') id) {

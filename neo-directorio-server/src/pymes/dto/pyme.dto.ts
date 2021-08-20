@@ -1,9 +1,11 @@
 import {
   IsEmail,
   IsEnum,
+  IsLatLong,
   IsNotEmpty,
   IsNumber,
   IsOptional,
+  isPhoneNumber,
   IsString,
   IsUrl,
 } from 'class-validator';
@@ -12,30 +14,46 @@ export class PymeDTO {
   @IsString()
   @IsNotEmpty()
   nombre: string;
+
+  @IsString()
+  @IsNotEmpty()
   propietario: string;
+
+  @IsString()
+  @IsNotEmpty()
   categoria: string;
+
+  @IsUrl()
+  @IsOptional()
   urlNegocio: string;
+
+  @IsString()
+  @IsNotEmpty()
+  description: string;
 
   @IsOptional()
   urlImages: string[];
   @IsEmail()
   email: string;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
   telefono: string;
-  localizacion: string;
+
+  @IsString()
+  @IsOptional()
   direccion: string;
-  description: string;
+
+  @IsString()
+  @IsOptional()
   redes_sociales: RedesSocialesDto[];
 
   @IsEnum(VerifyType)
   verificado: VerifyType;
-}
 
-class LatLng {
-  latittude: string;
-  longitude: string;
+  @IsOptional()
+  @IsLatLong()
+  localizacion: string;
 }
 
 export class RedesSocialesDto {
@@ -46,4 +64,9 @@ export class RedesSocialesDto {
   @IsUrl()
   @IsNotEmpty()
   urlRedSocial: string;
+}
+
+export class localizacion {
+  lat: string;
+  lng: string;
 }
