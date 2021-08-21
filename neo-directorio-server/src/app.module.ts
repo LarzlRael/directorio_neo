@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { PymesModule } from './pymes/pymes.module';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(process.env.DB_CNN_STRING, {
       useNewUrlParser: true,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -11,6 +11,7 @@ export const PymeSchema = new Schema({
   urlImages: [String],
   urlNegocio: String,
   description: String,
+  profileImage: String,
   redes_sociales: [{ nombre: String, url: String }],
   verificado: {
     type: String,

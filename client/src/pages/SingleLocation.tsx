@@ -6,6 +6,8 @@ import { useContext, useEffect } from 'react';
 import { HeaderBlack } from '../components/HeaderBlack';
 import styled from 'styled-components';
 import { PymeContext } from '../context/PymeContext';
+import { v4 as uuidv4 } from 'uuid';
+uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
 
 
 export const SingleLocation = () => {
@@ -20,7 +22,6 @@ export const SingleLocation = () => {
     }, []);
     useEffect(() => {
         getAllPymes();
-        console.log(allPymes);
     }, []);
 
 
@@ -44,6 +45,7 @@ export const SingleLocation = () => {
                 <Cards /> */}
                 {allPymes.map(({ nombre, urlImages, _id, verificado, redes_sociales }) => (
                     <Cards
+                        key={uuidv4()}
                         nombre={nombre}
                         _id={_id}
                         urlImages={urlImages[0]}

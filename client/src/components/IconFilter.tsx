@@ -54,12 +54,11 @@ export const IconFilterList = ({ style, theme }: Props) => {
                     key={i}
                     theme={theme}
                 >
-                    <Icon className={icon.iconName}
-
-
-                    />
-                    <Label
-                    >{icon.title}</Label>
+                    <Icon
+                        className={icon.iconName} />
+                    <Label>
+                        {icon.title}
+                    </Label>
                 </IconLabel>
             ))}
         </IconContainer>

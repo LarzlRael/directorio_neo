@@ -1,8 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 import { Indicator } from '../components/Indicator'
-import { useState, useContext, useEffect } from 'react';
-import { Modal } from './Modal';
-import { useSliderImage } from '../hooks/useSliderImage';
+import { useContext, useEffect } from 'react';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { HeaderBlack } from './HeaderBlack';
 import { PymeContext } from '../context/PymeContext';
@@ -10,6 +9,8 @@ import { useParams } from 'react-router';
 import { ContacInfo } from './pymeDetails/ContacInfo';
 import { Profile } from './pymeDetails/Profile';
 import { MapLocalization } from './pymeDetails/MapLocalization';
+import { capitalizeFirstLetter } from './utils/utils';
+import { ImageSlider } from '../hooks/useSliderImage';
 
 
 export const PlaceDetails = () => {
@@ -21,29 +22,7 @@ export const PlaceDetails = () => {
         getOnePyme(id);
     }, [])
 
-    useDocumentTitle(onePyme?.nombre ? onePyme?.nombre : 'xd');
-
-    //custom hook animation and slider
-    const {
-        currentImage,
-        changeImage,
-        animation,
-        setAnimation
-
-    } = useSliderImage();
-
-    /* if (onePyme?.localizacion !== undefined) {
-        const coords = onePyme?.localizacion.split(',');
-        console.log(coords);
-    } */
-
-
-    const [modalState, setModalState] = useState(false);
-
-
-    const changeStatexd = () => {
-        setModalState(true);
-    }
+    useDocumentTitle(onePyme?.nombre ? (onePyme?.nombre) : '');
 
     return (
         <>
@@ -59,82 +38,17 @@ export const PlaceDetails = () => {
                             <div className="section-title">
                                 <div className="border-box section-container">
                                     <label htmlFor="" className="title-label">
-                                        {onePyme?.nombre && 'xd'}
+                                        {onePyme?.nombre}
                                     </label>
                                     <hr />
 
-                                    <div className='images-container'>
-                                        <div
-                                            className=
-                                            {`main-image ${animation
-                                                ? 'fadeInAnimation' : ''}`}
-                                            onAnimationEnd={() => setAnimation(false)}
-
-                                            onClick={
-                                                changeStatexd
-                                            }
-                                        >
-                                            {/*  <div className="flechas">
-                                        <ChevronForwardCircle
-                                            width="35px"
-                                            height="35px"
-                                            color="white"
-                                            cssClasses="rotate-turn"
-                                            onClick={changePrevImage}
-                                        />
-                                        <ChevronForwardCircle
-                                            width="35px"
-                                            height="35px"
-                                            color="white"
-                                            onClick={changeNextImage}
-                                        />
-    
-                                    </div> */}
-                                            <img
-                                                className="main-current-image"
-                                                src={currentImage.currentUrl}
-
-                                                alt="" />
-                                        </div>
-
-                                        <div className="images-info">
-
-                                            {onePyme?.urlImages.map((image, i) => (
-                                                <div className="image-item pointer"
-                                                    key={i}
-                                                >
-                                                    <img
-                                                        src={`${image}`}
-                                                        alt="que fue :D"
-                                                        onClick={
-                                                            () => changeImage(`${image}`, i)
-                                                        }
-                                                        onAnimationEnd={() => setAnimation(false)}
-                                                    />
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
+                                    <ImageSlider urlImages={onePyme?.urlImages.length !== 0 && onePyme?.urlImages.length !== undefined ? onePyme!.urlImages : ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png']} />
 
 
-                                    <Modal
-                                        state={modalState}
-                                        changeState={setModalState}
-                                        titulo="que fue"
-                                        mostrarHeader={false}
-                                        padding="0px"
-                                    >
-                                        <img src={currentImage.currentUrl} alt=""
-                                            style={{
-                                                width: '100%',
-                                                height: '100%',
-                                            }}
-                                        />
-                                    </Modal>
 
                                     <div className="descripction">
                                         <label htmlFor="">{onePyme?.nombre}</label>
-                                        <p>{onePyme?.description}</p>
+                                        <p>{capitalizeFirstLetter(onePyme?.description)}</p>
                                     </div>
                                 </div>
 
@@ -157,6 +71,7 @@ export const PlaceDetails = () => {
                                 nombre={onePyme?.nombre}
                                 propietario={onePyme?.propietario}
                                 urlNegocio={onePyme?.urlNegocio}
+                                urlProfile={onePyme?.profileImage}
                             />
                         </div >
                     </div >

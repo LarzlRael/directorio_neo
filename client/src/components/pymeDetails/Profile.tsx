@@ -2,12 +2,13 @@ import React from 'react'
 import { Heart, MailOutline, LogoFacebook, LogoWhatsapp } from 'react-ionicons';
 
 interface ProfileProps {
-    nombre: string | undefined;
-    urlNegocio: string | undefined;
-    propietario: string | undefined;
+    nombre?: string;
+    urlNegocio?: string;
+    propietario?: string;
+    urlProfile?: string;
 }
 
-export const Profile = ({ nombre, urlNegocio, propietario }: ProfileProps) => {
+export const Profile = ({ nombre, urlNegocio, propietario, urlProfile }: ProfileProps) => {
     return (
         <div className="informationPlace">
             <div className="information">
@@ -34,7 +35,7 @@ export const Profile = ({ nombre, urlNegocio, propietario }: ProfileProps) => {
 
                     <div className="info-profile flex">
                         <div className="image">
-                            <img src="https://demo.directorist.com/plugin/demo-one/wp-content/uploads/2021/05/author-3.png" style={{
+                            <img src={urlProfile ? urlProfile : 'https://cdn.iconscout.com/icon/premium/png-256-thumb/profile-1506810-1278719.png'} style={{
                                 borderRadius: '100%',
                                 height: '60px',
                                 width: '60px',

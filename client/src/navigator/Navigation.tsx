@@ -9,6 +9,7 @@ import { Footer } from '../components/Footer';
 import ScrollToTop from '../hooks/scrollTop';
 
 /* import { PlaceDetails } from '../components/PlaceDetails'; */
+import { Loading } from '../components/Loading';
 
 const PlaceDetails = lazy(() =>
     import('../components/PlaceDetails')
@@ -28,8 +29,8 @@ export const NavigatorMain = () => {
 
     return (
         <Router>
+            <Suspense fallback={<Loading />}>
             <ScrollToTop />
-            <Suspense fallback={<div>Loading...</div>}>
                 <Switch>
                     <Route path="/" exact component={MainPage} />
                     <Route path="/otrapagina" exact component={Page2} />

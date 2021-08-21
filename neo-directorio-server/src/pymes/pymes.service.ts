@@ -79,4 +79,42 @@ export class PymesService {
     });
     return true;
   }
+
+  async addProfileImage(
+    id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ): Promise<boolean> {
+    const getPyme = await this.pymeModel.findOne({ _id: id });
+    if (!verifyValidId(id)) {
+      return false;
+    }
+    if (getPyme == null || getPyme == undefined) {
+      return false;
+    }
+
+    let uploadApiResponse: UploadApiResponse;
+
+    const upload = v2.uploader.upload_stream(
+      { folder: 'profiles_images' },
+      async (error, result) => {
+        if (error) {
+          console.log(error);
+          return false;
+        }
+        uploadApiResponse = result;
+
+        try {
+          getPyme.profileImage = uploadApiResponse.url;
+          console.log(getPyme);
+          await getPyme.save();
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    );
+
+    toStream(file.buffer).pipe(upload);
+
+    return true;
+  }
 }

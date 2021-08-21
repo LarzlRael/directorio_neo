@@ -2,6 +2,7 @@ import { createContext, useReducer } from 'react';
 import { PymeResponseResponse } from '../interfaces/pymeResponse';
 import { serverAPI } from '../provider/serverProvider';
 import { pymeReducer, PymeState } from './pymeReducer';
+import { capitalizeFirstLetter } from '../components/utils/utils';
 
 type PymeContextProps = {
     getOnePyme: (id: string) => Promise<void>;
@@ -39,10 +40,11 @@ const PymeProvider = ({ children }: any) => {
 
     const getOnePyme = async (id: string) => {
         try {
-            const body = await serverAPI.get(`pymes/${id}`);
+            const { data } = await serverAPI.get<PymeResponseResponse>(`pymes/${id}`);
+            data.nombre = capitalizeFirstLetter(data.nombre);
             return dispatch({
                 type: 'getOnePyme',
-                payload: body.data,
+                payload: data,
             });
         } catch (error) {
             console.log(error.response);

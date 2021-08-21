@@ -24,7 +24,7 @@ export const MapLocalization = ({ localization, direction }: localizationProps) 
         viewport,
         setViewport,
         mapboxglAccessToken
-    } = useDirectionsMap(parseInt(coords[1]), parseInt(coords[0]));
+    } = useDirectionsMap(parseFloat(coords[1]), parseFloat(coords[0]));
 
 
     return (

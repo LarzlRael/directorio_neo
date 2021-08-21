@@ -1,4 +1,6 @@
+import { ChevronBack } from 'react-ionicons';
 import { useLocation, useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { sizeMedia } from '../styles/mediaQuerys';
 
@@ -55,12 +57,23 @@ export const Indicator = ({ label }: Props) => {
 
     title = title.replace('-', ' ');
 
+    const history = useHistory();
+
+
     return (
         <BreadContainer
             backGroundImage={state !== undefined ? state.backGroundImage : 'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg'}
         >
 
             <Bread className="bread">
+                <div className="pointer">
+                    <ChevronBack
+                        width="25px"
+                        height="25px"
+                        color="white"
+                        onClick={history.goBack}
+                    />
+                </div>
                 <Label
                     color="white"
                     fontSize="2.3rem"

@@ -1,18 +1,21 @@
 import {
   Controller,
   Get,
+  HttpStatus,
   Param,
   Post,
   Res,
   UploadedFiles,
+  UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
 import { PymesService } from './pymes.service';
 import { Response } from 'express';
 import { PymeDTO, RedesSocialesDto } from './dto/pyme.dto';
-import { Body } from '@nestjs/common';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { Body, UploadedFile } from '@nestjs/common';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { imageFileFilter } from '../utils';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('pymes')
 export class PymesController {
@@ -21,7 +24,14 @@ export class PymesController {
   getAllPymesInfo() {
     return this.pymeService.getAllPymes();
   }
+
+  @Get('/:id')
+  getOne(@Param('id') id) {
+    return this.pymeService.getOnePyme(id);
+  }
+
   @Post('/newPyme')
+  @UseGuards(AuthGuard('jwt'))
   async newPyme(@Res() res: Response, @Body() pymeDTO: PymeDTO) {
     await this.pymeService.addnewPyme(pymeDTO);
     return res.json({
@@ -29,12 +39,9 @@ export class PymesController {
       message: 'nueva pyme agregada correctamente',
     });
   }
-  @Get('/:id')
-  getOne(@Param('id') id) {
-    return this.pymeService.getOnePyme(id);
-  }
 
   @Post('/addSocialNetwork/:id')
+  @UseGuards(AuthGuard('jwt'))
   async addSocialNetwork(
     @Res() res: Response,
     @Param('id') id,
@@ -54,6 +61,7 @@ export class PymesController {
   }
 
   @Post('/addedImage/:id')
+  @UseGuards(AuthGuard('jwt'))
   @UseInterceptors(
     FilesInterceptor('files', 5, {
       fileFilter: imageFileFilter,
@@ -64,5 +72,30 @@ export class PymesController {
     @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
     await this.pymeService.addImages(id, files);
+  }
+
+  @Post('/addProfile/:id')
+  @UseGuards(AuthGuard('jwt'))
+  @UseInterceptors(
+    FileInterceptor('file', {
+      fileFilter: imageFileFilter,
+    }),
+  )
+  async addProfileImage(
+    @Res() res: Response,
+    @Param('id') id,
+    @UploadedFile() fileProfileImage: Express.Multer.File,
+  ) {
+    if (await this.pymeService.addProfileImage(id, fileProfileImage)) {
+      res.status(HttpStatus.OK).json({
+        ok: true,
+        msg: 'Imagen de perfil agregada',
+      });
+    } else {
+      res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
+        ok: true,
+        msg: 'Error al subir imagen',
+      });
+    }
   }
 }

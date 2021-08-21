@@ -1,15 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAnimationn } from './useAnimaton';
+import { Modal } from '../components/Modal';
 
+interface PropsSliderImages {
+    urlImages: string[],
+}
+export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
 
-export const useSliderImage = () => {
     const [currentImage, setCurrentImage] = useState({
-        currentUrl: 'https://demo.directorist.com/plugin/demo-one/wp-content/uploads/2021/04/apple-1873078_640.jpg',
+        currentUrl: urlImages[0],
         currentIndex: 0
     });
+    useEffect(() => {
+        setCurrentImage({
+            currentUrl: urlImages[0],
+            currentIndex: 0
+        });
+        return () => {
+            setCurrentImage({
+                currentUrl: '',
+                currentIndex: 0
+            });
+        }
+    }, [urlImages, setCurrentImage]);
+
+
     const { animation, setAnimation } = useAnimationn();
 
+    const [modalState, setModalState] = useState(false);
 
+    const changeStatexd = () => {
+        setModalState(true);
+    }
 
     const changeImage = (url: string, index: number): void => {
         setAnimation(true);
@@ -18,7 +40,7 @@ export const useSliderImage = () => {
             currentIndex: index
         });
     }
-    const changeNextImage = () => {
+    /* const changeNextImage = () => {
         setAnimation(true);
 
         setCurrentImage({
@@ -33,9 +55,9 @@ export const useSliderImage = () => {
             currentIndex: currentImage.currentIndex - 1,
             currentUrl: `https://picsum.photos/id/${currentImage.currentIndex}/900/1024`
         });
-    }
+    } */
 
-    return {
+    /* return {
         changeImage,
         changeNextImage,
         changePrevImage,
@@ -43,5 +65,62 @@ export const useSliderImage = () => {
         //? animation state
         animation,
         setAnimation
-    };
+    }; */
+    return (
+        <>
+            <div className='images-container'>
+                <div
+                    className=
+                    {`main-image ${animation
+                        ? 'fadeInAnimation' : ''}`}
+                    onAnimationEnd={() => setAnimation(false)}
+
+                    onClick={
+                        changeStatexd
+                    }
+                >
+
+                    <img
+                        className="main-current-image"
+                        src={currentImage.currentUrl}
+
+                        alt="" />
+                </div>
+
+                <div className="images-info">
+
+                    {
+                        urlImages.map((image, i) => (
+                            <div className="image-item pointer"
+                                key={i}
+                            >
+                                <img
+                                    src={`${image}`}
+                                    alt="que fue :D"
+                                    onClick={
+                                        () => changeImage(`${image}`, i)
+                                    }
+                                    onAnimationEnd={() => setAnimation(false)}
+                                />
+                            </div>
+                        ))}
+                </div>
+            </div>
+
+            <Modal
+                state={modalState}
+                changeState={setModalState}
+                titulo="que fue"
+                mostrarHeader={false}
+                padding="0px"
+            >
+                <img src={currentImage.currentUrl} alt=""
+                    style={{
+                        width: '100%',
+                        height: '100%',
+                    }}
+                />
+            </Modal>
+        </>
+    )
 };

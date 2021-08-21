@@ -10,6 +10,7 @@ export interface PymeResponseResponse {
     propietario:    string;
     description:    string;
     urlNegocio:    string;
+    profileImage:    string;
     redes_sociales: RedesSociale[];
     __v:            number;
 }
