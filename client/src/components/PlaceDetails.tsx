@@ -10,16 +10,16 @@ import { ContacInfo } from './pymeDetails/ContacInfo';
 import { Profile } from './pymeDetails/Profile';
 import { MapLocalization } from './pymeDetails/MapLocalization';
 import { capitalizeFirstLetter } from './utils/utils';
-import { ImageSlider } from '../hooks/useSliderImage';
+import { ImageSlider } from './pymeDetails/ImageSlider';
 
 
 export const PlaceDetails = () => {
 
     const { getOnePyme, onePyme, notFound } = useContext(PymeContext);
-    let { id } = useParams<{ id: string }>();
+    let { nombre } = useParams<{ id: string, nombre: string }>();
 
     useEffect(() => {
-        getOnePyme(id);
+        getOnePyme(nombre);
     }, [])
 
     useDocumentTitle(onePyme?.nombre ? (onePyme?.nombre) : '');
@@ -72,10 +72,11 @@ export const PlaceDetails = () => {
                                 propietario={onePyme?.propietario}
                                 urlNegocio={onePyme?.urlNegocio}
                                 urlProfile={onePyme?.profileImage}
+                                redesSociales={onePyme?.redes_sociales}
                             />
                         </div >
                     </div >
-                    : <div className="">No se encotro nada we</div>
+                    : <div className="">No hay</div>
             }
         </>
     )

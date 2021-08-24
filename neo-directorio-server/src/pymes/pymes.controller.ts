@@ -25,9 +25,9 @@ export class PymesController {
     return this.pymeService.getAllPymes();
   }
 
-  @Get('/:id')
-  getOne(@Param('id') id) {
-    return this.pymeService.getOnePyme(id);
+  @Get('/:nombre')
+  getOne(@Param('nombre') nombre) {
+    return this.pymeService.getOnePymeByName(nombre);
   }
 
   @Post('/newPyme')
@@ -95,6 +95,25 @@ export class PymesController {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
         ok: true,
         msg: 'Error al subir imagen',
+      });
+    }
+  }
+
+  @Get('/changeMainImage/:id/:index')
+  async changeMainImage(
+    @Res() res: Response,
+    @Param('id') id,
+    @Param('index') index,
+  ) {
+    if (await this.pymeService.changeMainImage(id, index)) {
+      res.json({
+        ok: true,
+        message: 'Imagen principal cambiada',
+      });
+    } else {
+      res.json({
+        ok: false,
+        message: 'hubo un errors',
       });
     }
   }

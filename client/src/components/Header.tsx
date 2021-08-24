@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { appName } from '../strings';
 import { MenuOutline } from 'react-ionicons';
 import { sizeMedia } from '../styles/mediaQuerys';
-import { Loading } from './Loading';
 
 
 const HeaderContainer = styled.div`

@@ -1,14 +1,16 @@
 import React from 'react'
-import { Heart, MailOutline, LogoFacebook, LogoWhatsapp } from 'react-ionicons';
+import { Heart, MailOutline, LogoFacebook, LogoWhatsapp, LogoInstagram } from 'react-ionicons';
+import { RedesSociales } from '../../interfaces/pymeResponse';
 
 interface ProfileProps {
     nombre?: string;
     urlNegocio?: string;
     propietario?: string;
     urlProfile?: string;
+    redesSociales?: RedesSociales[];
 }
 
-export const Profile = ({ nombre, urlNegocio, propietario, urlProfile }: ProfileProps) => {
+export const Profile = ({ nombre, urlNegocio, propietario, urlProfile, redesSociales }: ProfileProps) => {
     return (
         <div className="informationPlace">
             <div className="information">
@@ -80,15 +82,16 @@ export const Profile = ({ nombre, urlNegocio, propietario, urlProfile }: Profile
                                 justifyContent: 'space-evenly'
                             }}
                         >
-                            <LogoFacebook
-                                color="#3b5998"
-                                width="35px"
-                                height="35px" />
-                            <LogoWhatsapp
-                                color="#25D366"
-                                width="35px"
-                                height="35px"
-                            />
+                            {
+                                redesSociales?.map(({ nombre, _id, urlRedSocial }) => (
+                                    <SocialLink
+                                        nombre={nombre}
+                                        _id={_id}
+                                        key={_id}
+                                        urlRedSocial={urlRedSocial} />
+
+                                ))
+                            }
 
                         </div>
                     </div>
@@ -97,4 +100,42 @@ export const Profile = ({ nombre, urlNegocio, propietario, urlProfile }: Profile
         </div>
 
     )
+}
+
+const SocialLink = ({ nombre, urlRedSocial }: RedesSociales) => {
+    switch (nombre) {
+        case 'Instagram':
+            return (
+                <a href={urlRedSocial} target="_blank" rel="noopener noreferrer">
+                    <LogoInstagram
+                        color="#C13584"
+                        width="35px"
+                        height="35px"
+                    />
+                </a>
+            );
+        case 'Facebook':
+            return (
+                <a href={urlRedSocial} target="_blank" rel="noopener noreferrer">
+
+                    <LogoFacebook
+                        color="#3b5998"
+                        width="35px"
+                        height="35px" />
+                </a>
+
+            )
+        case 'Whatsapp':
+            return (
+                <LogoWhatsapp
+                    color="#25D366"
+                    width="35px"
+                    height="35px"
+                />
+            )
+
+
+        default:
+            return <> </>;
+    }
 }

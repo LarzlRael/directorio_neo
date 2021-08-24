@@ -1,5 +1,5 @@
 export const imageFileFilter = (res, file, callback) => {
-  if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+  if (!file.originalname.match(/\.(jpg|jpeg|png|gif|webp)$/)) {
     return callback(new Error('Only image files are allowed!'), false);
   }
   callback(null, true);
@@ -11,4 +11,15 @@ export const verifyValidId = (id: string): boolean => {
   } else {
     return false;
   }
+};
+
+export const swapArrayElements = (
+  arr: string[],
+  indexA: number,
+  indexB: number,
+): string[] => {
+  const temp = arr[indexA];
+  arr[indexA] = arr[indexB];
+  arr[indexB] = temp;
+  return arr;
 };

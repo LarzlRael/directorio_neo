@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAnimationn } from './useAnimaton';
-import { Modal } from '../components/Modal';
+import { useAnimationn } from '../../hooks/useAnimaton';
+import { Modal } from '../Modal';
 
 interface PropsSliderImages {
     urlImages: string[],
@@ -71,7 +71,7 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
             <div className='images-container'>
                 <div
                     className=
-                    {`main-image ${animation
+                    {`main-image pointer ${animation
                         ? 'fadeInAnimation' : ''}`}
                     onAnimationEnd={() => setAnimation(false)}
 

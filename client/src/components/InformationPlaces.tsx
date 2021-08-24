@@ -117,7 +117,7 @@ export const InformationCard = ({ place: { title, backGroundImage, icon } }: Pro
 
     return (
         <LinkStyled to={{
-            pathname: `/single-location/${convertSlug()}`,
+            pathname: `/productos/${convertSlug()}`,
             state: {
                 backGroundImage
             }

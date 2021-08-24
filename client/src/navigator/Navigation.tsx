@@ -34,8 +34,8 @@ export const NavigatorMain = () => {
                 <Switch>
                     <Route path="/" exact component={MainPage} />
                     <Route path="/otrapagina" exact component={Page2} />
-                    <Route path="/single-location/:title/details/:id" exact component={PlaceDetails} />
-                    <Route path="/single-location/:title" exact component={SingleLocation} />
+                    <Route path="/productos/:title/:nombre" exact component={PlaceDetails} />
+                    <Route path="/productos/:title" exact component={SingleLocation} />
                 </Switch>
             </Suspense>
             <Footer />

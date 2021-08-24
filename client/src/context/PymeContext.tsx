@@ -5,7 +5,7 @@ import { pymeReducer, PymeState } from './pymeReducer';
 import { capitalizeFirstLetter } from '../components/utils/utils';
 
 type PymeContextProps = {
-    getOnePyme: (id: string) => Promise<void>;
+    getOnePyme: (nombre: string) => Promise<void>;
     getAllPymes: () => Promise<void>;
     loading: boolean;
     allPymes: PymeResponseResponse[],
@@ -38,16 +38,16 @@ const PymeProvider = ({ children }: any) => {
         });
     }
 
-    const getOnePyme = async (id: string) => {
+    const getOnePyme = async (nombre: string) => {
         try {
-            const { data } = await serverAPI.get<PymeResponseResponse>(`pymes/${id}`);
+            const { data } = await serverAPI.get<PymeResponseResponse>(`pymes/${nombre}`);
             data.nombre = capitalizeFirstLetter(data.nombre);
             return dispatch({
                 type: 'getOnePyme',
                 payload: data,
             });
         } catch (error) {
-            console.log(error.response);
+            /* console.log(error.response); */
             return dispatch({
                 type: 'notFound'
             });

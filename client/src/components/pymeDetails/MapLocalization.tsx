@@ -45,11 +45,7 @@ export const MapLocalization = ({ localization, direction }: localizationProps) 
                         }}
                     >Direccion </label>
                 </div>
-                <div className=""
-                    style={{
-                        width: '100%',
-                    }}
-                ></div>
+                <div className="spacer"></div>
 
                 <div className="">{direction}</div>
             </div>

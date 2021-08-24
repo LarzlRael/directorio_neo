@@ -1,22 +1,24 @@
-import { BagAddOutline, BeakerOutline, EyeOutline } from "react-ionicons"
+import { BagAddOutline, BeakerOutline, CheckmarkCircle, EyeOutline, LogoFacebook, LogoGoogle, LogoInstagram } from 'react-ionicons';
 import { Link } from "react-router-dom";
-import { RedesSociale } from '../interfaces/pymeResponse';
+import { PymeResponseResponse, RedesSociales } from '../interfaces/pymeResponse';
 
-interface propsCard {
-    _id: string;
-    urlImages: string;
-    verificado: string;
-    nombre: string;
-    redes_sociales: RedesSociale[];
-}
-
-export const Cards = ({ nombre, urlImages, redes_sociales, _id }: propsCard) => {
+export const Cards = ({ nombre, urlImages, redes_sociales, verificado, _id }: PymeResponseResponse) => {
     return (
-        <div className="single-card flex">
-            <Link to={`/single-location/information-tecnology/details/${_id}`}>
+        <div className={`single-card flex ${verificado === 'verificado' && 'verificado'}`}>
+            {verificado === 'verificado' &&
+                <div className="check">
+                    <CheckmarkCircle
+                        width="45px"
+                        height="45px"
+                        color="#5EDD6A"
+                    />
+                </div>
+            }
+
+            <Link to={`/productos/confecciones/${nombre}`}>
                 <img
                     className="main-image"
-                    src={urlImages ? urlImages : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'}
+                    src={urlImages[0] ? urlImages[0] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png'}
                     alt={nombre}
                 />
             </Link>
@@ -48,17 +50,11 @@ export const Cards = ({ nombre, urlImages, redes_sociales, _id }: propsCard) => 
                     label="De contacto"
                 /> */}
                 {redes_sociales.map(red_social => (
-                    <LabelAndIcon icon={
-                        <BagAddOutline
-                            color="#7a82a6"
-                            height="20px"
-                            width="20px"
-                        />
-                    }
-                        label={red_social.nombre}
+                    <LabelAndIcon
+                        {...red_social}
                     />
                 ))}
-                <div className="info-card flex">
+                {/*  <div className="info-card flex">
                     <LabelAndIcon icon={
                         <BeakerOutline
                             color="#7a82a6"
@@ -80,7 +76,7 @@ export const Cards = ({ nombre, urlImages, redes_sociales, _id }: propsCard) => 
                         label="1200"
                     />
 
-                </div>
+                </div> */}
 
             </div>
 
@@ -90,27 +86,36 @@ export const Cards = ({ nombre, urlImages, redes_sociales, _id }: propsCard) => 
     )
 }
 
-interface Props {
-    icon: any,
-    label: string,
 
-};
-const LabelAndIcon = ({ icon, label }: Props) => {
+const LabelAndIcon = ({ nombre, urlRedSocial }: RedesSociales) => {
 
     return (
         <div style={{
             marginBottom: '0.5rem',
             display: 'flex',
-            alignContent: 'center'
-
+            alignItems: 'center',
         }}>
 
-            {icon}
-            <label style={{
-                marginLeft: '1rem',
-                color: '#7a82a6',
-                fontSize: '0.9rem',
-            }}>{label}</label>
+            {nombre === 'Instagram' && <LogoInstagram
+                color="#C13584"
+                height="25px"
+                width="25px"
+            />}
+            {nombre === 'Facebook' && <LogoFacebook
+                color="#3b5998"
+                height="25px"
+                width="25px"
+            />}
+
+            <a
+                href={urlRedSocial}
+                target="_blank"
+                style={{
+                    textDecoration: 'none',
+                    marginLeft: '1rem',
+                    color: '#7a82a6',
+                    fontSize: '0.9rem',
+                }} rel="noreferrer">{nombre}</a>
         </div>
     )
 }

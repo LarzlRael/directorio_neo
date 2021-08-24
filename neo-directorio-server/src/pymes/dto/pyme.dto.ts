@@ -9,7 +9,7 @@ import {
   IsString,
   IsUrl,
 } from 'class-validator';
-import { Verify as VerifyType } from '../verify.enum';
+import { Verify as VerifyType, RedSocial } from '../verify.enum';
 export class PymeDTO {
   @IsString()
   @IsNotEmpty()
@@ -36,7 +36,7 @@ export class PymeDTO {
   @IsEmail()
   email: string;
 
-  @IsNumber()
+  @IsString()
   @IsOptional()
   telefono: string;
 
@@ -59,7 +59,8 @@ export class PymeDTO {
 export class RedesSocialesDto {
   @IsString()
   @IsNotEmpty()
-  nombre: string;
+  @IsEnum(RedSocial)
+  nombre: RedSocial;
 
   @IsUrl()
   @IsNotEmpty()

@@ -43,14 +43,12 @@ export const SingleLocation = () => {
                 <Cards />
                 <Cards />
                 <Cards /> */}
-                {allPymes.map(({ nombre, urlImages, _id, verificado, redes_sociales }) => (
+                {/*                 {allPymes.map(({ nombre, urlImages, _id, verificado, redes_sociales }) => ( */}
+                {allPymes.map((pyme) => (
                     <Cards
+                        {...pyme}
                         key={uuidv4()}
-                        nombre={nombre}
-                        _id={_id}
-                        urlImages={urlImages[0]}
-                        verificado={verificado}
-                        redes_sociales={redes_sociales}
+
                     />
                 ))}
 

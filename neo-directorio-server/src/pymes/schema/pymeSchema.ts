@@ -1,23 +1,28 @@
 import { Schema } from 'mongoose';
 
-export const PymeSchema = new Schema({
-  nombre: String,
-  propietario: String,
-  categoria: String,
-  email: String,
-  telefono: String,
-  localizacion: String,
-  direccion: String,
-  urlImages: [String],
-  urlNegocio: String,
-  description: String,
-  profileImage: String,
-  redes_sociales: [{ nombre: String, url: String }],
-  verificado: {
-    type: String,
-    default: 'no_verificado',
+export const PymeSchema = new Schema(
+  {
+    nombre: String,
+    propietario: String,
+    categoria: String,
+    email: String,
+    telefono: String,
+    localizacion: String,
+    direccion: String,
+    urlImages: [{ type: String }],
+    urlNegocio: String,
+    description: String,
+    profileImage: String,
+    redes_sociales: [{ nombre: String, urlRedSocial: String }],
+    verificado: {
+      type: String,
+      default: 'no_verificado',
+    },
   },
-});
+  {
+    timestamps: true,
+  },
+);
 
 /* @IsString()
 @IsNotEmpty()

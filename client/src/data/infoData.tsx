@@ -10,8 +10,8 @@ export const informationPlacesData: InformationPlacesI[] = [
     
     {
         icon: 'fab fa-affiliatetheme',
-        title: 'Resport',
-        backGroundImage:'https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg'
+        title: 'Confecciones',
+        backGroundImage:'https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'
 
     },
     {
@@ -29,8 +29,8 @@ export const informationPlacesData: InformationPlacesI[] = [
     },
     {
         icon: 'fab fa-accusoft',
-        title: 'Resport',
-        backGroundImage:'https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg'
+        title: 'Confecciones',
+        backGroundImage:'https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'
 
     },
     {
@@ -53,8 +53,8 @@ export const informationPlacesData: InformationPlacesI[] = [
     },
     {
         icon: 'fas fa-allergies',
-        title: 'Resport',
-        backGroundImage:'https://filedn.com/ltOdFv1aqz1YIFhf4gTY8D7/ingus-info/BLOGS/Photography-stocks3/stock-photography-slider.jpg'
+        title: 'Confecciones',
+        backGroundImage:'https://photographycourse.net/wp-content/uploads/2014/11/Landscape-Photography-steps.jpg'
 
     },
 ]

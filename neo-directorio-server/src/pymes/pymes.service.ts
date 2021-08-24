@@ -4,7 +4,7 @@ import { UploadApiResponse, v2 } from 'cloudinary';
 import { Model } from 'mongoose';
 import { PymeDTO, RedesSocialesDto } from './dto/pyme.dto';
 import { PymeModel } from './interfaces/project.interface';
-import { verifyValidId } from '../utils';
+import { verifyValidId, swapArrayElements } from '../utils';
 import toStream = require('buffer-to-stream');
 
 @Injectable()
@@ -13,15 +13,18 @@ export class PymesService {
 
   async addnewPyme(pymeDTO: PymeDTO) {
     const pyme = new this.pymeModel(pymeDTO);
-    /* await pyme.save(); */
-    console.log(pyme);
+    return await pyme.save();
   }
-  async getOnePyme(id: string) {
-    const onePyme = await this.pymeModel.findOne({ _id: id });
+  async getOnePymeByName(nombre: string): Promise<PymeModel> {
+    console.log(nombre);
+    const onePyme = await this.pymeModel.findOne({
+      nombre,
+    });
+    console.log(onePyme);
     return onePyme;
   }
   async getAllPymes() {
-    const onePyme = await this.pymeModel.find();
+    const onePyme = await this.pymeModel.find().sort({ verificado: 'desc' });
     return onePyme;
   }
 
@@ -64,8 +67,6 @@ export class PymesService {
             return false;
           }
           uploadApiResponse = result;
-          console.log(getPyme);
-          console.log(getPyme.urlImages);
           try {
             getPyme.urlImages.push(uploadApiResponse.url);
             await getPyme.save();
@@ -116,5 +117,29 @@ export class PymesService {
     toStream(file.buffer).pipe(upload);
 
     return true;
+  }
+  async changeMainImage(id: string, index: number): Promise<boolean> {
+
+    const currentPyme = await this.pymeModel.findOne({ _id: id });
+
+    if (index >= currentPyme.urlImages.length) {
+      return false;
+    }
+
+    /* console.log(JSON.stringify(currentPyme.urlImages, null, " ")); */
+
+    try {
+      const updated = await this.pymeModel.findByIdAndUpdate(
+        { _id: id },
+        {
+          urlImages: swapArrayElements(currentPyme.urlImages, 0, index),
+        },
+      );
+      console.log(updated);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   }
 }

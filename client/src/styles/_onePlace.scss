@@ -50,20 +50,27 @@ $padding-responsive: 1rem;
             margin-top: 2rem;
             padding: 2rem;
 
-            @include media(xs_sm) {
-                padding: $padding-responsive;
-            }
-
             .info-category {
                 justify-content: space-between;
+                flex-wrap: wrap;
                 margin: 0.8rem 0;
+            
+            }
+            @include media(xs_sm) {
+                padding: $padding-responsive;
             }
         }
         .location {
             margin-top: 2rem;
             padding: 2rem;
+            .spacer{
+                width: 100%;
+            }
             @include media(xs_sm) {
                 padding: $padding-responsive;
+                .spacer{
+                    width: 20%;
+                }
             }
             @include media(xs_sm) {
                 padding: 1rem;

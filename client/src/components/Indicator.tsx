@@ -58,7 +58,7 @@ export const Indicator = ({ label }: Props) => {
     title = title.replace('-', ' ');
 
     const history = useHistory();
-
+    const { nombre } = useParams<{ nombre: string }>();
 
     return (
         <BreadContainer
@@ -79,7 +79,7 @@ export const Indicator = ({ label }: Props) => {
                     fontSize="2.3rem"
                 >{label ? label : title}</Label>
                 <Label fontSize=".9rem" color="white">
-                    Home / {label ? label : title}
+                    Home / {label ? label : title}  {nombre && ' / '+nombre}
                 </Label>
             </Bread>
 

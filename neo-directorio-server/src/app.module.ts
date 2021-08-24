@@ -14,10 +14,11 @@ import { AuthModule } from './auth/auth.module';
     }),
     MongooseModule.forRoot(process.env.DB_CNN_STRING, {
       useNewUrlParser: true,
+      useCreateIndex: true,
     }),
     AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

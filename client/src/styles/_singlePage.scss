@@ -1,10 +1,12 @@
+$verifed-color: #5edd6a;
+
 .cards-container {
     flex-wrap: wrap;
     width: 1000px;
     max-width: $container-main;
     margin: auto;
     justify-content: space-between;
-    
+
     @include media(md) {
         width: 90%;
     }
@@ -25,7 +27,23 @@
     -webkit-box-shadow: 5px 5px 15px -9px #000000;
     box-shadow: 5px 5px 15px -9px #000000;
     transition: 0.3s ease all;
+    position: relative;
 
+    .check {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 9;
+    }
+    &.verificado {
+        border: 1px solid $verifed-color;
+        -webkit-box-shadow: 5px 5px 15px -9px $verifed-color;
+        box-shadow: 5px 5px 15px -9px $verifed-color;
+        &:hover {
+            -webkit-box-shadow: 2px 2px 31px -10px $verifed-color;
+            box-shadow: 2px 2px 31px -10px $verifed-color;
+        }
+    }
     @include media(sm) {
         flex-direction: row;
         height: 200px;
