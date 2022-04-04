@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsEnum,
   IsLatLong,
+  IsMongoId,
   IsNotEmpty,
   IsNumber,
   IsOptional,
@@ -54,6 +55,8 @@ export class PymeDTO {
   @IsOptional()
   @IsLatLong()
   localizacion: string;
+
+  _id: string;
 }
 
 export class RedesSocialesDto {

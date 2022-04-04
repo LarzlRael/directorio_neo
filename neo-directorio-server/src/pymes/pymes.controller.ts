@@ -16,6 +16,8 @@ import { Body, UploadedFile } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { imageFileFilter } from '../utils';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/decorators/get-user.decorator';
+import { User } from 'src/auth/dto/schema/User.interface';
 
 @Controller('pymes')
 export class PymesController {
@@ -32,8 +34,12 @@ export class PymesController {
 
   @Post('/newPyme')
   @UseGuards(AuthGuard('jwt'))
-  async newPyme(@Res() res: Response, @Body() pymeDTO: PymeDTO) {
-    await this.pymeService.addnewPyme(pymeDTO);
+  async newPyme(
+    @Res() res: Response,
+    @Body() pymeDTO: PymeDTO,
+    @GetUser() user: User,
+  ) {
+    await this.pymeService.addnewPyme(pymeDTO, user);
     return res.json({
       ok: true,
       message: 'nueva pyme agregada correctamente',
@@ -99,6 +105,7 @@ export class PymesController {
     }
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/changeMainImage/:id/:index')
   async changeMainImage(
     @Res() res: Response,
@@ -113,7 +120,23 @@ export class PymesController {
     } else {
       res.json({
         ok: false,
-        message: 'hubo un errors',
+        message: 'hubo un error',
+      });
+    }
+  }
+
+  @Get('/verificarPyme/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async verifyPyme(@Res() res: Response, @Param('id') id) {
+    if (await this.pymeService.verifyPyme(id)) {
+      res.json({
+        ok: true,
+        message: 'Pyme Verificado',
+      });
+    } else {
+      res.json({
+        ok: false,
+        message: 'hubo un error',
       });
     }
   }

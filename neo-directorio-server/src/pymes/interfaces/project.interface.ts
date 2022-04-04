@@ -17,6 +17,7 @@ export interface PymeModel extends Document {
   profileImage: string;
   redes_sociales: RedesSocialesDto[];
   verificado: Verify;
+  idUser: string;
 }
 
 export interface RedesSocialesDto {

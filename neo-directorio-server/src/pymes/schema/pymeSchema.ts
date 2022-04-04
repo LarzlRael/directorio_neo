@@ -18,6 +18,11 @@ export const PymeSchema = new Schema(
       type: String,
       default: 'no_verificado',
     },
+    idUser: {
+      type: Schema.Types.ObjectId,
+      ref: 'Users',
+      required: true,
+    },
   },
   {
     timestamps: true,
