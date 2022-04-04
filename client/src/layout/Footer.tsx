@@ -1,10 +1,11 @@
 
 import styled from 'styled-components';
+import { primaryColor } from '../context/themeColors';
 import { footerString } from '../strings';
 
 const FooterStyled = styled.footer`
     align-items:center;
-    background:#2F3131;
+    background: ${primaryColor};
     color:#fff;
     display:flex;
     justify-content:center;
@@ -14,7 +15,6 @@ const FooterStyled = styled.footer`
 
 
 export const Footer = () => {
-
 
     const yearCurrently = new Date().getFullYear();
 

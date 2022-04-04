@@ -14,7 +14,8 @@ type PymeAction =
     /* | { type: 'signUp', payload: { token: string, usuario: CreadoPor } } */
     | { type: 'addError' }
     | { type: 'notFound' }
-    | { type: 'logout' }
+    | { type: 'loading' }
+    | { type: 'clearOnePyme', payload: PymeResponseResponse | null }
 
 export const pymeReducer = (state: PymeState, action: PymeAction): PymeState => {
 
@@ -39,17 +40,21 @@ export const pymeReducer = (state: PymeState, action: PymeAction): PymeState => 
         case 'notFound':
             return {
                 ...state,
+                loading: false,
                 notFound: true,
             };
-        /*
-                case 'logout':
-                case 'noAuthenticated':
-                    return {
-                        ...state,
-                        status: 'not-authenticated',
-                        token: null,
-                        user: null,
-                    }; */
+
+        case 'clearOnePyme':
+            return {
+                ...state,
+                onePyme: action.payload,
+                loading: true,
+            };
+        case 'loading':
+            return {
+                ...state,
+                loading: true,
+            };
 
 
 

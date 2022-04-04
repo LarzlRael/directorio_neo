@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { appName } from '../strings';
 import { MenuOutline } from 'react-ionicons';
 import { sizeMedia } from '../styles/mediaQuerys';
+import { primaryColor } from '../context/themeColors';
 
 const HeaderMainContainer = styled.div<{
     blackTheme: boolean;
@@ -14,7 +15,7 @@ const HeaderMainContainer = styled.div<{
     top: 0;
     z-index: 10;
     transition: .3s ease all;
-    background: ${({ blackTheme }) => blackTheme ? '#2F3131' : ''};
+    background: ${({ blackTheme }) => blackTheme ? primaryColor : ''};
 `;
 
 const HeaderContainer = styled.div`
@@ -34,7 +35,7 @@ const HeaderContainer = styled.div`
     @media ${sizeMedia('xs_sm')} {
         margin: 0 ;
         width: 100%;
-        background:#222222;
+        background:${primaryColor};
         align-items: flex-start ;
         padding: 0;
         flex-direction: column;
@@ -49,7 +50,7 @@ const Links = styled.div`
         
     @media ${sizeMedia('xs_sm')} {
         
-        background:#222222;
+        background: ${primaryColor};
         display:flex;
         flex-direction: column;
         position:absolute;
@@ -176,7 +177,6 @@ export const HeaderBlack = () => {
             close-menu */}
                 <Links className={menu ? 'open-menu' : 'close-menu'}>
                     {/* <Links className={menu ? 'close-menu' : 'open-menu'}> */}
-
 
                     <LabelLink blackTheme={className} to="/">Inicio</LabelLink>
 

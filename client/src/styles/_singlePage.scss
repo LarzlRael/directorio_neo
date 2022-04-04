@@ -1,21 +1,6 @@
 $verifed-color: #5edd6a;
 
-.cards-container {
-    flex-wrap: wrap;
-    width: 1000px;
-    max-width: $container-main;
-    margin: auto;
-    justify-content: space-between;
 
-    @include media(md) {
-        width: 90%;
-    }
-    @include media(xs_sm) {
-        width: 100%;
-        justify-content: center;
-        padding: 1rem;
-    }
-}
 .single-card {
     width: 100%;
     background: #fff;

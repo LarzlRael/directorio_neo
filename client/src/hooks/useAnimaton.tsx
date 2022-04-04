@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useState } from 'react'
 
 export const useAnimationn = () => {
-    const [animation, setAnimation] = useState(false);
+  const [animation, setAnimation] = useState(false)
 
-    return {
-        animation,
-        setAnimation
-    };
-};
+  return {
+    animation,
+    setAnimation,
+  }
+}

@@ -5,11 +5,11 @@ import {
     Route,
 } from "react-router-dom";
 import { Page2 } from "../pages/Page2";
-import { Footer } from '../components/Footer';
-import ScrollToTop from '../hooks/scrollTop';
+import { Footer } from '../layout/Footer';
+import ScrollToTop from '../layout/ScrollTop';
 
 /* import { PlaceDetails } from '../components/PlaceDetails'; */
-import { Loading } from '../components/Loading';
+import { Loading } from '../components/widgets/loadings/Loading';
 
 const PlaceDetails = lazy(() =>
     import('../components/PlaceDetails')

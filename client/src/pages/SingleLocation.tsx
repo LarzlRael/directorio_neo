@@ -1,64 +1,77 @@
+import { Indicator } from '../layout/Indicator'
+import { Cards } from '../components/widgets/card/Cards'
+import { HeaderBlack } from '../layout/HeaderBlack'
+import styled from 'styled-components'
 
-import { Indicator } from '../components/Indicator'
-import { IconFilterList } from '../components/IconFilter';
-import { Cards } from '../components/Cards';
-import { useContext, useEffect } from 'react';
-import { HeaderBlack } from '../components/HeaderBlack';
-import styled from 'styled-components';
-import { PymeContext } from '../context/PymeContext';
-import { v4 as uuidv4 } from 'uuid';
-uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+import { v4 as uuidv4 } from 'uuid'
+import { Loading } from '../components/widgets/loadings/Loading'
+import { useDocumentTitle } from '../hooks/useDocumentTitle'
+import { sizeMedia } from '../styles/mediaQuerys'
+import { PymeResponseResponse } from '../interfaces/pymeResponse'
+import { RouteComponentProps } from 'react-router-dom'
+import useAxiosAuth from '../hooks/useAxios'
 
+interface SingleLocationProps extends RouteComponentProps<any> {
+  /* label?: string */
+}
 
-export const SingleLocation = () => {
+export const SingleLocation = (props: SingleLocationProps) => {
+  useDocumentTitle('Categorias')
 
-    const { allPymes, getAllPymes } = useContext(PymeContext);
-    useEffect(() => {
-        const prevTitle = document.title;
-        document.title = "New tittle";
-        return () => {
-            document.title = prevTitle;
-        }
-    }, []);
-    useEffect(() => {
-        getAllPymes();
-    }, []);
+  const { response: allPymes, loading } = useAxiosAuth<PymeResponseResponse[]>({
+    url: '/pymes/',
+    method: 'GET',
+  })
+  const preconfigArray = (
+    array: PymeResponseResponse[],
+  ): PymeResponseResponse[] => {
+    return array.map((item: PymeResponseResponse) => {
+      if (item.urlImages.length !== 0) {
+        const imagesConverted = item.urlImages.map((image, i) => {
+          const splitString = image.split('upload/')
+          let resizeImage = `${splitString[0]}upload/c_scale,w_300/${splitString[1]}`
+          return (item.urlImages[i] = resizeImage)
+        })
+        return { ...item, urlImages: imagesConverted }
+      }
+      return { ...item }
+    })
+  }
 
+  return (
+    <div>
+      <HeaderBlack />
 
+      <Indicator {...props} />
 
-    return (
-        <div >
-            <HeaderBlack />
-
-            <Indicator />
-
-            <IconFilterList theme="light" />
-
-            <GridContainer className="cards-container">
-
-                {/* <Cards />
-                <Cards />
-                <Cards />
-                <Cards />
-                <Cards />
-                <Cards />
-                <Cards /> */}
-                {/*                 {allPymes.map(({ nombre, urlImages, _id, verificado, redes_sociales }) => ( */}
-                {allPymes.map((pyme) => (
-                    <Cards
-                        {...pyme}
-                        key={uuidv4()}
-
-                    />
-                ))}
-
-            </GridContainer>
-        </div>
-    )
+      {!loading ? (
+        <GridContainer className="cards-container">
+          {preconfigArray(allPymes).map((pyme) => (
+            <Cards {...pyme} key={uuidv4()} />
+          ))}
+        </GridContainer>
+      ) : (
+        <Loading />
+      )}
+    </div>
+  )
 }
 
 const GridContainer = styled.div`
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
-`;
+  display: grid;
+  gap: 2rem;
+  max-width: $container-main;
+  margin: 1.5rem auto;
+  grid-template-columns: repeat(auto-fill, minmax(19rem, 1fr));
+  width: 1000px;
+
+  @media ${sizeMedia('md')} {
+    width: 90%;
+  }
+  @media ${sizeMedia('xs_sm')} {
+    margin: 0.5rem auto;
+    width: 100%;
+    justify-content: center;
+    padding: 1rem;
+  }
+`

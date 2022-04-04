@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IconFilterList } from './IconFilter';
 import { Search } from 'react-ionicons';
 import { sizeMedia } from '../styles/mediaQuerys';
+import { primaryColor } from '../context/themeColors';
 
 const FormContainer = styled.form`
     display:flex;
@@ -49,7 +50,10 @@ const InputSearch = styled.input`
     @media ${sizeMedia('xs_sm')} {
         width: 100%;
         border-radius: 5px;
-        margin-top: 0.5rem;
+        margin-top: .9rem;
+        /* &::last-child{
+            margin-bottom: .9rem;
+        } */
     }
 `;
 
@@ -63,8 +67,16 @@ const Button = styled.button<{
     border-radius:5px;
     border: none;
     display:flex;
-    align-items:center;
-    cursor:pointer;
+    align-content: center;
+    cursor: pointer;
+    justify-content: center;
+    @media ${sizeMedia('xs_sm')} {
+        padding: .7rem;
+        width: 100%;
+        &:nth-child(1){
+            margin-right: 10px;
+        }
+    }
     
 `;
 const ContainerButtons = styled.div`
@@ -75,7 +87,7 @@ const ContainerButtons = styled.div`
     @media ${sizeMedia('xs_sm')} {
         width:100%;
         
-        margin-top:0.5rem;   
+        margin-top:1rem;   
         justify-content:space-around;
     }
 `;
@@ -84,43 +96,49 @@ export const SearchFilter = () => {
 
     const onSubmit = (e: any) => {
         e.preventDefault();
-
     }
 
     return (
         <div className="SearchFilter">
 
-            <LabelTitle htmlFor="">Discover great places nearby</LabelTitle>
+            <LabelTitle htmlFor="">
+                Descubre fantásticos lugares cercanos
+            </LabelTitle>
 
-            <LabelSubTitle>Find the best match of intersts</LabelSubTitle>
+            <LabelSubTitle>
+                Encuentra la mejor coincidencia de intereses
+            </LabelSubTitle>
 
             <IconFilterList theme="dark" />
 
             <FormContainer action="" onSubmit={onSubmit}>
 
-                <InputSearch type="text" placeholder="Where to look?" />
-                <InputSearch type="text" placeholder="All categories" />
-                <InputSearch type="text" placeholder="what are you looking for ? " />
+                <InputSearch type="text" placeholder="¿Donde estas buscando?" />
+                <InputSearch type="text" placeholder="Todas las categorias" />
+                <InputSearch type="text" placeholder="¿Donde estas buscando?" />
 
                 <ContainerButtons>
                     <Button
                         textColor="black"
-                        backGroundColor="white">Filtro</Button>
+                        backGroundColor="white">
+                        Filtro
+                    </Button>
 
-
-                    <Button>
+                    <Button
+                        backGroundColor={primaryColor}
+                    >
                         <Search
-                            color={'#fff'}
-
-                            height="20px"
-                            width="20px"
+                            color="#fff"
+                            height="16px"
+                            width="16px"
                         />
-                        Buscar</Button>
+                        Buscar
+                    </Button>
                 </ContainerButtons>
 
             </FormContainer>
 
-            <IconFilterList theme="dark" />
+            {/* <IconFilterList theme="dark" /> */}
         </div>
     )
 }

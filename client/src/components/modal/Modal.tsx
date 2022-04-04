@@ -2,7 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { Close } from 'react-ionicons';
 import styled from 'styled-components';
-import { sizeMedia } from '../styles/mediaQuerys';
+import { sizeMedia } from '../../styles/mediaQuerys';
 
 export interface LayoutProps {
     children: React.ReactNode,

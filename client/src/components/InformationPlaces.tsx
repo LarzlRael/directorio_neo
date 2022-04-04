@@ -40,18 +40,19 @@ const CardInformation = styled.div`
 const Label = styled.label<{
     fontSize?: string,
     color?: string,
-    marginTop?: string,
-    marginbottom?: string,
+    marginVertical?: string,
     bold?: boolean,
 }>`
     color: ${({ color }) => color ? color : '#292828'};
     font-size:${({ fontSize }) => fontSize};
     display:block;
     text-align: center;
-    margin-top:${({ marginTop }) => marginTop};
-    margin-bottom:${({ marginbottom }) => marginbottom};
+    margin:${({ marginVertical }) => marginVertical};
     font-weight:${({ bold }) => bold && 'bold'};
-    
+
+    @media ${sizeMedia('xs_sm')} {
+        margin: 1rem 0rem;
+    }
 `;
 const Icon = styled.i`
     color: white;
@@ -87,13 +88,14 @@ export const InformationPlaces = ({ places, title, subtitle }: Props) => {
         <div className="infomationContainer">
             <Label
                 fontSize="2rem"
-                marginTop="4rem"
-                marginbottom="1rem"
+                marginVertical="1rem"
+                color="#54595f"
                 bold
             >{title}</Label>
             <Label
                 fontSize="1rem"
-                marginbottom="1rem"
+                marginVertical="1rem"
+                color="#54595f"
                 bold>
                 {subtitle}</Label>
 
@@ -131,7 +133,7 @@ export const InformationCard = ({ place: { title, backGroundImage, icon } }: Pro
                 <Label
                     color="white"
                     fontSize="18px"
-                    marginTop="10px"
+                    marginVertical="10px"
                     htmlFor="">{title}</Label>
 
             </CardInformation>
