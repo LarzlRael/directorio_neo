@@ -13,9 +13,10 @@ import { Loading } from './widgets/loadings/Loading'
 import { PymeResponseResponse } from '../interfaces/pymeResponse'
 import { RouteComponentProps } from 'react-router-dom'
 import useAxiosAuth from '../hooks/useAxios'
+import { H2, Span, P } from './text'
 
 interface PlaceDetailsProps
-  extends RouteComponentProps<{ id: string; nombre: string }> {
+  extends RouteComponentProps<{ id: string; nombre: string; title: string }> {
   /* label?: string */
 }
 
@@ -51,9 +52,9 @@ export const PlaceDetails = (props: PlaceDetailsProps) => {
           <div className="one-place">
             <div className="section-title">
               <div className="border-box section-container">
-                <label htmlFor="" className="title-label">
-                  {onePyme?.nombre}
-                </label>
+                <H2 color="#000" textAlign="start" fontSize="1.5rem">
+                  {capitalizeFirstLetter(onePyme.nombre)}
+                </H2>
                 <hr />
 
                 <ImageSlider
@@ -68,8 +69,22 @@ export const PlaceDetails = (props: PlaceDetailsProps) => {
                 />
 
                 <div className="descripction">
-                  <label htmlFor="">{onePyme?.nombre}</label>
-                  <p>{capitalizeFirstLetter(onePyme?.description)}</p>
+                  <Span
+                    fontSize="1.5rem"
+                    textAlign="start"
+                    fontWeight="600"
+                    color="#000"
+                  >
+                    {onePyme?.nombre}
+                  </Span>
+                  <P
+                    fontSize=" 15px"
+                    /* fontWeight= "400" */
+                    lineHeight="25px"
+                    margin="0.5rem 0"
+                  >
+                    {capitalizeFirstLetter(onePyme?.description)}
+                  </P>
                 </div>
               </div>
 

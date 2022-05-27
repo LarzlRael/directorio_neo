@@ -1,6 +1,5 @@
 import { createContext, useReducer } from 'react'
 import { PymeResponseResponse } from '../interfaces/pymeResponse'
-
 import { pymeReducer, PymeState } from './pymeReducer'
 
 type PymeContextProps = {

@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { appName } from '../strings'
 import { MenuOutline } from 'react-ionicons'
 import { sizeMedia } from '../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
+import { useWindowSize } from '../hooks/useWindows'
 
 const HeaderContainer = styled.div`
   position: relative;
   display: flex;
+  justify-content: space-between;
   color: white;
   width: 1000px;
   max-width: 1000px;
@@ -38,6 +40,7 @@ const Links = styled.div`
     transition: 0.3s ease all;
     width: 100%;
     z-index: 100;
+    margin-top: 1rem;
 
     &.open-menu {
       transform: translate(0%);
@@ -90,6 +93,7 @@ const MenuIconContainer = styled.div`
 
 export const Header = () => {
   const [menu, setShowMenu] = useState(false)
+  const { windowSize } = useWindowSize()
 
   const showMenu = () => {
     setShowMenu(true)
@@ -97,14 +101,45 @@ export const Header = () => {
   const hideMenu = () => {
     setShowMenu(false)
   }
+  useEffect(() => {
+    if (windowSize.width < 768) {
+      hideMenu()
+    } else {
+      hideMenu()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [windowSize.width])
+
+  const linkClickeable = () => {
+    if (windowSize.width <= 768) {
+      hideMenu()
+    } else {
+      return
+    }
+  }
 
   return (
     <HeaderContainer>
       <div className="logoContainer">
-        <div className="logName">
-          <LabelLogo fontSize="1.6rem" to="/">
-            {appName}
-          </LabelLogo>
+        <div className="logoName">
+          <Link
+            to="/"
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <img
+              style={{
+                height: '35px',
+                width: '100px',
+              }}
+              src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
+              alt="Nego LOGO"
+            />
+            <LabelLogo fontSize="1.5rem" to="/">
+              <span>{appName}</span>
+            </LabelLogo>
+          </Link>
 
           <MenuIconContainer>
             <MenuOutline
@@ -115,23 +150,21 @@ export const Header = () => {
             />
           </MenuIconContainer>
         </div>
-
-        {/*    <label>
-                    #1 Business directory
-                </label> */}
       </div>
-      {/*   open-menu
-            close-menu */}
+
       <Links className={menu ? 'open-menu' : 'close-menu'}>
-        {/* <Links className={menu ? 'close-menu' : 'open-menu'}> */}
-
-        <LabelLink to="/">Inicio</LabelLink>
-
-        <LabelLink to="/">Listado</LabelLink>
-
-        <LabelLink to="/">Categorias</LabelLink>
-
-        <LabelLink to="/">Mi cuenta</LabelLink>
+        <LabelLink onClick={linkClickeable} to="/">
+          Inicio
+        </LabelLink>
+        <LabelLink to="/" onClick={linkClickeable}>
+          Listado
+        </LabelLink>{' '}
+        <LabelLink to="/" onClick={linkClickeable}>
+          Categorias
+        </LabelLink>
+        <LabelLink to="/" onClick={linkClickeable}>
+          Mi cuenta
+        </LabelLink>
       </Links>
     </HeaderContainer>
   )

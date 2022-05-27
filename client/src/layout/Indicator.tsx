@@ -3,20 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
 import { sizeMedia } from '../styles/mediaQuerys'
 import { BackIcon } from './BackIcon'
-
-const Label = styled.label<{
-  fontSize?: string
-  marginbottom?: string
-  bold?: boolean
-}>`
-  display: block;
-  color: ${({ color }) => (color ? color : 'black')};
-  font-size: ${({ fontSize }) => fontSize};
-  display: block;
-  text-transform: capitalize;
-  margin: 1rem 0;
-  font-weight: ${({ bold }) => bold && 'bold'};
-`
+import { H2, Span } from '../components/text/'
 
 const BreadContainer = styled.div<{ backGroundImage: string }>`
   width: 100%;
@@ -39,22 +26,21 @@ const Bread = styled.div`
 `
 interface RouteParams {
   title: string
+  nombre: string
 }
 interface StateType {
   backGroundImage: string
 }
-interface PropsIndicator extends RouteComponentProps<any> {
+interface PropsIndicator extends RouteComponentProps<RouteParams> {
   label?: string
 }
 
-export const Indicator = ({ label, history }: PropsIndicator) => {
+export const Indicator = ({ label, history, match }: PropsIndicator) => {
   const { state } = useLocation<StateType>()
 
-  let { title } = useParams<RouteParams>()
+  let { title, nombre } = match.params
 
   title = title.replace('-', ' ')
-
-  const { nombre } = useParams<{ nombre: string }>()
 
   return (
     <BreadContainer
@@ -66,14 +52,14 @@ export const Indicator = ({ label, history }: PropsIndicator) => {
     >
       <Bread className="bread">
         <div className="pointer">
-          <BackIcon onClick={() => history.goBack()} />
+          <BackIcon onClick={() => history.goBack()} label="Regresar" />
         </div>
-        <Label color="white" fontSize="2.3rem">
+        <H2 color="white" fontSize="2.2rem" fontWeight="500" textAlign="start">
           {label ? label : title}
-        </Label>
-        <Label fontSize=".9rem" color="white">
+        </H2>
+        <Span fontSize=".9rem" color="white" textAlign="start">
           Home / {label ? label : title} {nombre && ' / ' + nombre}
-        </Label>
+        </Span>
       </Bread>
     </BreadContainer>
   )

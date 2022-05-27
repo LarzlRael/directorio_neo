@@ -15,8 +15,8 @@ export const MainPage = () => {
       <Suspense fallback={<Loading />}>
         {/* <div className="categories"> */}
         <InformationPlaces
-          title="Descubre"
-          subtitle="Todas las categorias que tenemos"
+          title="Descubre las pymes"
+          subtitle="Todas las categorias"
           places={informationPlacesData}
         />
 

@@ -3,6 +3,7 @@
 @import "./styles/mainPage";
 @import "./styles/singlePage";
 @import "./styles/onePlace";
+@import "./styles/formStyle";
 
 * {
     margin: 0;
@@ -17,4 +18,9 @@
 
 .pointer {
     cursor: pointer;
+}
+
+:root {
+    --colorPrimary: #02243f;
+    --colorSecondary: #004f6c;
 }

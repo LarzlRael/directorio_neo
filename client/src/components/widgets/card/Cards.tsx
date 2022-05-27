@@ -1,6 +1,10 @@
 import { CheckmarkCircle, LogoFacebook, LogoInstagram } from 'react-ionicons'
 import { Link } from 'react-router-dom'
-import { PymeResponseResponse, RedesSociales } from '../../../interfaces/pymeResponse'
+import {
+  PymeResponseResponse,
+  RedesSociales,
+} from '../../../interfaces/pymeResponse'
+import { Label } from '../../text'
 
 export const Cards = ({
   nombre,
@@ -33,16 +37,15 @@ export const Cards = ({
         />
       </Link>
       <div className="contenido">
-        <label
-          style={{
-            display: 'block',
-            marginBottom: '1rem',
-            fontWeight: 500,
-            fontSize: '18px',
-          }}
+        <Label
+          display="block"
+          margin="0 0 1rem 0"
+          fontWeight="500"
+          fontSize="18px"
+          textAlign="start"
         >
           {nombre}
-        </label>
+        </Label>
 
         {/*   <LabelAndIcon icon={
                     <BagAddOutline

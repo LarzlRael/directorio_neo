@@ -10,6 +10,13 @@ import { sizeMedia } from '../styles/mediaQuerys'
 import { PymeResponseResponse } from '../interfaces/pymeResponse'
 import { RouteComponentProps } from 'react-router-dom'
 import useAxiosAuth from '../hooks/useAxios'
+import { Formik, Form, Field } from 'formik'
+import { Button } from '../components/buttons/Button'
+import { Search } from 'react-ionicons'
+import { useState, useEffect } from 'react'
+import { validateArray } from '../components/utils/validation/validation'
+import { Label } from '../components/text/Label'
+import { primaryColor } from '../context/themeColors'
 
 interface SingleLocationProps extends RouteComponentProps<any> {
   /* label?: string */
@@ -17,9 +24,12 @@ interface SingleLocationProps extends RouteComponentProps<any> {
 
 export const SingleLocation = (props: SingleLocationProps) => {
   useDocumentTitle('Categorias')
+  const [url, setUrl] = useState('/pymes')
 
-  const { response: allPymes, loading } = useAxiosAuth<PymeResponseResponse[]>({
-    url: '/pymes/',
+  const { response: allPymes, loading, reload } = useAxiosAuth<
+    PymeResponseResponse[]
+  >({
+    url: url,
     method: 'GET',
   })
   const preconfigArray = (
@@ -37,19 +47,70 @@ export const SingleLocation = (props: SingleLocationProps) => {
       return { ...item }
     })
   }
+  interface initialValuesI {
+    nombre: string
+  }
+  const initialValues = {
+    nombre: '',
+  }
+  useEffect(() => {
+    reload()
+  }, [url])
 
+  const onSubmit = (values: initialValuesI) => {
+    if (values.nombre === '') {
+      setUrl('/pymes')
+    } else {
+      setUrl(`/pymes/nombre/${values.nombre.trim().toLowerCase()}`)
+    }
+  }
   return (
     <div>
       <HeaderBlack />
 
       <Indicator {...props} />
 
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
+        <Form>
+          {/* <InputSearch type="text"> */}
+          <div
+            style={{
+              display: 'flex',
+              margin: '3rem 2rem',
+              alignContent: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Field
+              id="nombre"
+              name="nombre"
+              placeholder="Buscar Pyme o categoria"
+              className="inputSearch"
+            />
+
+            <Button
+              type="submit"
+              background={primaryColor}
+              icon={<Search color="#fff" height="16px" width="16px" />}
+            >
+              Buscar
+            </Button>
+          </div>
+        </Form>
+      </Formik>
+
       {!loading ? (
-        <GridContainer className="cards-container">
-          {preconfigArray(allPymes).map((pyme) => (
-            <Cards {...pyme} key={uuidv4()} />
-          ))}
-        </GridContainer>
+        validateArray(preconfigArray(allPymes)) ? (
+          <GridContainer className="cards-container">
+            {preconfigArray(allPymes).map((pyme) => (
+              <Cards {...pyme} key={uuidv4()} />
+            ))}
+          </GridContainer>
+        ) : (
+          <Label textAlign="center" display="block">
+            No se encontraron resultados
+          </Label>
+        )
       ) : (
         <Loading />
       )}

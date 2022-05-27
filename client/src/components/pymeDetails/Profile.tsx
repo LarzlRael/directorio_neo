@@ -7,6 +7,10 @@ import {
 } from 'react-ionicons'
 import { RedesSociales } from '../../interfaces/pymeResponse'
 import ToolTip from '../boxes/ToolTip'
+import { Span } from '../text'
+import { H2 } from '../text/H2'
+import { Label } from '../text/Label'
+import { capitalizeFirstLetter } from '../utils/utils';
 
 interface ProfileProps {
   nombre?: string
@@ -26,7 +30,15 @@ export const Profile = ({
     <div className="informationPlace">
       <div className="information">
         <div>
-          <label className="title-content">Informacion de autor</label>
+          <H2
+            fontSize="18px"
+            fontWeight="500"
+            textAlign="start"
+            /* color: $title-color; */
+            margin=" 0 0 0 1rem"
+          >
+            Información de autor
+          </H2>
         </div>
 
         <div className="border-box profile">
@@ -57,26 +69,16 @@ export const Profile = ({
             </div>
 
             <div className="nameAndCategory">
-              <label htmlFor="">{nombre}</label>
-              <p
-                style={{
-                  fontSize: '14px',
-                }}
-              >
-                Miembro desde hace 1 año
-              </p>
+              <Label fontSize="1.2rem" fontWeight="550">
+                {capitalizeFirstLetter(nombre)}
+              </Label>
+              <Span fontSize="14px">Miembro desde hace 1 año</Span>
             </div>
           </div>
           <div className="contact">
             <div className="icon flex">
               <MailOutline width="20px" height="20px" />
-              <label
-                style={{
-                  marginLeft: '0.5rem',
-                }}
-              >
-                {urlNegocio ? urlNegocio : ''}
-              </label>
+              <Label margin="0 0 0 .5rem">{urlNegocio ? urlNegocio : ''}</Label>
             </div>
             <a
               href="https://demo.directorist.com/plugin/demo-one/directory/the-british-museum/"
