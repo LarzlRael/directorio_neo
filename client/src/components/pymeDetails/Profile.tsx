@@ -5,26 +5,28 @@ import {
   LogoWhatsapp,
   LogoInstagram,
 } from 'react-ionicons'
-import { RedesSociales } from '../../interfaces/pymeResponse'
+import {
+  PymeInterfaceResponse,
+  RedesSociales,
+} from '../../interfaces/pymeResponse'
 import ToolTip from '../boxes/ToolTip'
 import { Span } from '../text'
 import { H2 } from '../text/H2'
 import { Label } from '../text/Label'
-import { capitalizeFirstLetter } from '../utils/utils';
+import { capitalizeFirstLetter } from '../utils/utils'
 
 interface ProfileProps {
-  nombre?: string
-  urlNegocio?: string
-  propietario?: string
-  profileImage?: string
-  redes_sociales?: RedesSociales[]
+  pyme: PymeInterfaceResponse
 }
 export const Profile = ({
-  nombre,
-  urlNegocio,
-  propietario,
-  profileImage,
-  redes_sociales,
+  pyme: {
+    nombre,
+    urlNegocio,
+    propietario,
+    profileImage,
+    redes_sociales,
+    departamento,
+  },
 }: ProfileProps) => {
   return (
     <div className="informationPlace">
@@ -72,16 +74,38 @@ export const Profile = ({
               <Label fontSize="1.2rem" fontWeight="550">
                 {capitalizeFirstLetter(nombre)}
               </Label>
+
+              <Label
+                fontSize="1.1rem"
+                fontWeight="400"
+                display="block"
+                textAlign="start"
+              >
+                {departamento}
+              </Label>
               <Span fontSize="14px">Miembro desde hace 1 año</Span>
             </div>
           </div>
           <div className="contact">
             <div className="icon flex">
               <MailOutline width="20px" height="20px" />
-              <Label margin="0 0 0 .5rem">{urlNegocio ? urlNegocio : ''}</Label>
+              <Label margin="0 0 0 .5rem">
+                <a
+                  style={{
+                    textDecoration: 'none',
+                    color: '#000',
+                    fontSize: '15px',
+                  }}
+                  href={urlNegocio ?? urlNegocio}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {urlNegocio ?? urlNegocio}
+                </a>
+              </Label>
             </div>
             <a
-              href="https://demo.directorist.com/plugin/demo-one/directory/the-british-museum/"
+              href="#"
               style={{
                 textDecoration: 'none',
                 color: '#202428',

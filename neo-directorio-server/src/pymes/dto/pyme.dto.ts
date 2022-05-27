@@ -11,6 +11,7 @@ import {
   IsUrl,
 } from 'class-validator';
 import { Verify as VerifyType, RedSocial } from '../verify.enum';
+import { departamentEnum } from '../../utils';
 export class PymeDTO {
   @IsString()
   @IsNotEmpty()
@@ -31,6 +32,10 @@ export class PymeDTO {
   @IsString()
   @IsNotEmpty()
   description: string;
+
+  @IsEnum(departamentEnum)
+  @IsNotEmpty()
+  departamento: departamentEnum;
 
   @IsOptional()
   urlImages: string[];

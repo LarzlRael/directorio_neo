@@ -23,3 +23,15 @@ export const swapArrayElements = (
   arr[indexB] = temp;
   return arr;
 };
+
+export enum departamentEnum {
+  'La Paz' = 'La Paz',
+  'Cochabamba' = 'Cochabamba',
+  'Chuquisaca' = 'Chuquisaca',
+  'Tarija' = 'Tarija',
+  'Oruro' = 'Oruro',
+  'Potosi' = 'Potosi',
+  'Santa Cruz' = 'Santa Cruz',
+  'Beni' = 'Beni',
+  'Pando' = 'Pando',
+}

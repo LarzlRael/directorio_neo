@@ -21,7 +21,7 @@ import { User } from 'src/auth/dto/schema/User.interface';
 
 @Controller('pymes')
 export class PymesController {
-  constructor(private pymeService: PymesService) { }
+  constructor(private pymeService: PymesService) {}
   @Get()
   getAllPymesInfo() {
     return this.pymeService.getAllPymes();
@@ -30,6 +30,15 @@ export class PymesController {
   @Get('/:nombre')
   getOne(@Param('nombre') nombre) {
     return this.pymeService.getOnePymeByName(nombre);
+  }
+
+  @Get('/:field/:query')
+  findOPyme(@Param('field') nombre, @Param('query') query: string) {
+    if (query.length === 0) {
+      return this.pymeService.getAllPymes();
+    } else {
+      return this.pymeService.findPymeByField(nombre, query);
+    }
   }
 
   @Post('/newPyme')
@@ -99,7 +108,7 @@ export class PymesController {
       });
     } else {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        ok: true,
+        ok: false,
         msg: 'Error al subir imagen',
       });
     }

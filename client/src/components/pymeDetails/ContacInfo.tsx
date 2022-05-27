@@ -1,6 +1,6 @@
 import { CallOutline, MailOutline } from 'react-ionicons'
 import { Label } from '../text'
-import { H2 } from '../text/H2'
+import { CardDescription } from '../widgets/card'
 
 interface ContactProps {
   telefono: string | undefined
@@ -9,16 +9,10 @@ interface ContactProps {
 
 export const ContacInfo = ({ telefono, email }: ContactProps) => {
   return (
-    <div className="border-box contact-information">
-      <H2
-        fontSize="18px"
-        fontWeight="500"
-        textAlign="start"
-        /* color: $title-color; */
-        margin=" 0  0 1rem 0 "
-      >
-        Informacion de contacto
-      </H2>
+    <CardDescription
+      title="Informacion de contacto"
+      className="contact-information"
+    >
       {telefono && (
         <ContactInfo
           icon={<CallOutline width="20px" height="20px" />}
@@ -34,7 +28,7 @@ export const ContacInfo = ({ telefono, email }: ContactProps) => {
           contactInfo={email}
         />
       )}
-    </div>
+    </CardDescription>
   )
 }
 

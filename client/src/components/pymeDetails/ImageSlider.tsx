@@ -85,7 +85,7 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
               <div className="image-item pointer" key={i}>
                 <img
                   src={`${image}`}
-                  alt="que fue :D"
+                  alt="imagen"
                   onClick={() => changeImage(`${image}`, i)}
                   onAnimationEnd={() => setAnimation(false)}
                 />

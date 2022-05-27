@@ -165,6 +165,5 @@ const BotonCerrar = styled.div`
     color: #1766dc;
     &:hover{
         background: #f2f2f2;
-
     }
 `;

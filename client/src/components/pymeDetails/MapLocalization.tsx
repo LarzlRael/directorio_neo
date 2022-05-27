@@ -3,9 +3,9 @@ import React from 'react'
 import { MapOutline } from 'react-ionicons'
 import ReactMapGL from 'react-map-gl'
 import { useDirectionsMap } from '../../hooks/useDirectionsMap'
-import { Label } from '../text'
-import { H2 } from '../text/H2'
-import { P } from '../text/P'
+import { P, Label } from '../text/'
+
+import { CardDescription } from '../widgets/card/'
 
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js')
 
@@ -30,22 +30,13 @@ export const MapLocalization = ({
   )
 
   return (
-    <div className="border-box location">
-      <H2
-        fontSize="18px"
-        fontWeight="500"
-        textAlign="start"
-        /* color: $title-color; */
-        margin=" 0  0 1rem 0 "
-      >
-        Localización
-      </H2>
+    <CardDescription title="Localización" className="location">
       <div className="flex info-category">
         <div className="flex icon-info">
           <div className="icono">
             <MapOutline width="20px" height="20px" />
           </div>
-          <Label margin="0 0 0 .5rem">Direccion</Label>
+          <Label margin="0 0 0 .5rem">Dirección</Label>
         </div>
         <div className="spacer"></div>
 
@@ -86,6 +77,6 @@ export const MapLocalization = ({
           </ReactMapGL>
         </a>
       </div>
-    </div>
+    </CardDescription>
   )
 }

@@ -10,7 +10,7 @@ import { MapLocalization } from './pymeDetails/MapLocalization'
 import { capitalizeFirstLetter } from './utils/utils'
 import { ImageSlider } from './pymeDetails/ImageSlider'
 import { Loading } from './widgets/loadings/Loading'
-import { PymeResponseResponse } from '../interfaces/pymeResponse'
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
 import { RouteComponentProps } from 'react-router-dom'
 import useAxiosAuth from '../hooks/useAxios'
 import { H2, Span, P } from './text'
@@ -20,11 +20,11 @@ interface PlaceDetailsProps
   /* label?: string */
 }
 
-export const PlaceDetails = (props: PlaceDetailsProps) => {
+export const PymeDetails = (props: PlaceDetailsProps) => {
   let { nombre } = props.match.params
 
   const { response: onePyme, loading, reload } = useAxiosAuth<
-    PymeResponseResponse
+    PymeInterfaceResponse
   >({
     url: `/pymes/${nombre}`,
     method: 'GET',
@@ -52,7 +52,13 @@ export const PlaceDetails = (props: PlaceDetailsProps) => {
           <div className="one-place">
             <div className="section-title">
               <div className="border-box section-container">
-                <H2 color="#000" textAlign="start" fontSize="1.5rem">
+                <H2
+                  color="#000"
+                  textAlign="start"
+                  fontSize="1.5rem"
+                  fontWeight="bold"
+                  margin="1rem 0 0 0"
+                >
                   {capitalizeFirstLetter(onePyme.nombre)}
                 </H2>
                 <hr />
@@ -75,7 +81,7 @@ export const PlaceDetails = (props: PlaceDetailsProps) => {
                     fontWeight="600"
                     color="#000"
                   >
-                    {onePyme?.nombre}
+                    {capitalizeFirstLetter(onePyme?.nombre)}
                   </Span>
                   <P
                     fontSize=" 15px"
@@ -100,7 +106,7 @@ export const PlaceDetails = (props: PlaceDetailsProps) => {
               )}
             </div>
 
-            <Profile {...onePyme} />
+            <Profile pyme={onePyme} />
           </div>
         </div>
       ) : (

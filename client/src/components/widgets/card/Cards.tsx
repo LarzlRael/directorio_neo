@@ -1,10 +1,11 @@
 import { CheckmarkCircle, LogoFacebook, LogoInstagram } from 'react-ionicons'
 import { Link } from 'react-router-dom'
 import {
-  PymeResponseResponse,
+  PymeInterfaceResponse,
   RedesSociales,
 } from '../../../interfaces/pymeResponse'
 import { Label } from '../../text'
+import { capitalizeFirstLetter } from '../../utils/utils'
 
 export const Cards = ({
   nombre,
@@ -12,7 +13,7 @@ export const Cards = ({
   redes_sociales,
   verificado,
   _id,
-}: PymeResponseResponse) => {
+}: PymeInterfaceResponse) => {
   return (
     <div
       className={`single-card flex ${
@@ -40,57 +41,16 @@ export const Cards = ({
         <Label
           display="block"
           margin="0 0 1rem 0"
-          fontWeight="500"
+          fontWeight="bold"
           fontSize="18px"
           textAlign="start"
         >
-          {nombre}
+          {capitalizeFirstLetter(nombre)}
         </Label>
 
-        {/*   <LabelAndIcon icon={
-                    <BagAddOutline
-                        color="#7a82a6"
-                        height="20px"
-                        width="20px"
-                    />
-                }
-                    label="Informacion"
-                />
-                <LabelAndIcon icon={
-                    <BagAddOutline
-                        color="#7a82a6"
-                        height="20px"
-                        width="20px"
-                    />
-                }
-                    label="De contacto"
-                /> */}
         {redes_sociales?.map((red_social) => (
           <LabelAndIcon {...red_social} />
         ))}
-        {/*  <div className="info-card flex">
-                    <LabelAndIcon icon={
-                        <BeakerOutline
-                            color="#7a82a6"
-
-                            height="20px"
-                            width="20px"
-                        />
-                    }
-                        label="Historial +1"
-                    />
-
-                    <LabelAndIcon icon={
-                        <EyeOutline
-                            color="#7a82a6"
-                            height="18px"
-                            width="18px"
-                        />
-                    }
-                        label="1200"
-                    />
-
-                </div> */}
       </div>
     </div>
   )

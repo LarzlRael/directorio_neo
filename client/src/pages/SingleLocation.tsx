@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { Loading } from '../components/widgets/loadings/Loading'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
 import { sizeMedia } from '../styles/mediaQuerys'
-import { PymeResponseResponse } from '../interfaces/pymeResponse'
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
 import { RouteComponentProps } from 'react-router-dom'
 import useAxiosAuth from '../hooks/useAxios'
 import { Formik, Form, Field } from 'formik'
@@ -27,15 +27,15 @@ export const SingleLocation = (props: SingleLocationProps) => {
   const [url, setUrl] = useState('/pymes')
 
   const { response: allPymes, loading, reload } = useAxiosAuth<
-    PymeResponseResponse[]
+    PymeInterfaceResponse[]
   >({
     url: url,
     method: 'GET',
   })
   const preconfigArray = (
-    array: PymeResponseResponse[],
-  ): PymeResponseResponse[] => {
-    return array.map((item: PymeResponseResponse) => {
+    array: PymeInterfaceResponse[],
+  ): PymeInterfaceResponse[] => {
+    return array.map((item: PymeInterfaceResponse) => {
       if (item.urlImages.length !== 0) {
         const imagesConverted = item.urlImages.map((image, i) => {
           const splitString = image.split('upload/')

@@ -1,21 +1,21 @@
-import { PymeResponseResponse } from '../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse';
 
 export interface PymeState {
 
     loading: boolean;
-    allPymes: PymeResponseResponse[],
-    onePyme: PymeResponseResponse | null,
+    allPymes: PymeInterfaceResponse[],
+    onePyme: PymeInterfaceResponse | null,
     notFound: boolean;
 }
 
 type PymeAction =
-    | { type: 'getAllPymes', payload: PymeResponseResponse[] }
-    | { type: 'getOnePyme', payload: PymeResponseResponse }
+    | { type: 'getAllPymes', payload: PymeInterfaceResponse[] }
+    | { type: 'getOnePyme', payload: PymeInterfaceResponse }
     /* | { type: 'signUp', payload: { token: string, usuario: CreadoPor } } */
     | { type: 'addError' }
     | { type: 'notFound' }
     | { type: 'loading' }
-    | { type: 'clearOnePyme', payload: PymeResponseResponse | null }
+    | { type: 'clearOnePyme', payload: PymeInterfaceResponse | null }
 
 export const pymeReducer = (state: PymeState, action: PymeAction): PymeState => {
 

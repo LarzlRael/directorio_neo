@@ -1,11 +1,11 @@
 import { createContext, useReducer } from 'react'
-import { PymeResponseResponse } from '../interfaces/pymeResponse'
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
 import { pymeReducer, PymeState } from './pymeReducer'
 
 type PymeContextProps = {
   loading: boolean
-  allPymes: PymeResponseResponse[]
-  onePyme: PymeResponseResponse | null
+  allPymes: PymeInterfaceResponse[]
+  onePyme: PymeInterfaceResponse | null
   notFound: boolean
 }
 

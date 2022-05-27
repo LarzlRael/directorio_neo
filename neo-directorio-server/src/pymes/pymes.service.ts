@@ -12,7 +12,7 @@ import toStream = require('buffer-to-stream');
 
 @Injectable()
 export class PymesService {
-  constructor(@InjectModel('Pymes') private pymeModel: Model<PymeModel>) { }
+  constructor(@InjectModel('Pymes') private pymeModel: Model<PymeModel>) {}
 
   async addnewPyme(pymeDTO: PymeDTO, user: User) {
     const pyme = new this.pymeModel(pymeDTO);
@@ -28,11 +28,20 @@ export class PymesService {
     return onePyme;
   }
   async getAllPymes() {
-    const onePyme = await this.pymeModel
+    const allPymes = await this.pymeModel
       .find()
       .sort({ verificado: 'desc' })
       .populate('Users');
-    return onePyme;
+    return allPymes;
+  }
+  async findPymeByField(field: string, query: string) {
+    if (query.length === 0) {
+      return await this.getAllPymes();
+    } else {
+      return await this.pymeModel.find({
+        [field]: { $regex: '.*' + query + '.*' },
+      });
+    }
   }
 
   async addSocialNetworks(
