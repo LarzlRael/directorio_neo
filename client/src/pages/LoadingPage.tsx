@@ -1,4 +1,3 @@
-import React from 'react'
 import { Loading } from '../components/widgets/loadings/Loading'
 
 export const LoadingPage = () => {

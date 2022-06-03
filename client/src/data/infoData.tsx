@@ -58,3 +58,16 @@ export const informationPlacesData: InformationPlacesI[] = [
 
     },
 ]
+
+
+export const departamentos = [
+    'La Paz',
+    'Cochabamba',
+    'Santa Cruz',
+    'Oruro',
+    'Potosi',
+    'Tarija',
+    'Chuquisaca',
+    'Beni',
+    'Pando',
+  ]

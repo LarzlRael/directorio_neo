@@ -5,7 +5,6 @@ import { Footer } from '../layout/Footer'
 import ScrollToTop from '../layout/ScrollTop'
 
 /* import { PlaceDetails } from '../components/PlaceDetails'; */
-import { Loading } from '../components/widgets/loadings/Loading'
 
 const PymeDetails = lazy(() =>
   import('../components/PymeDetails').then(({ PymeDetails }) => ({

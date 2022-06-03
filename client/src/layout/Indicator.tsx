@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router'
+import { useLocation } from 'react-router'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
 import { sizeMedia } from '../styles/mediaQuerys'

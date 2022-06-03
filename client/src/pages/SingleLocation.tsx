@@ -17,6 +17,7 @@ import { useState, useEffect } from 'react'
 import { validateArray } from '../components/utils/validation/validation'
 import { Label } from '../components/text/Label'
 import { primaryColor } from '../context/themeColors'
+import { departamentos } from '../data/infoData'
 
 interface SingleLocationProps extends RouteComponentProps<any> {
   /* label?: string */
@@ -49,19 +50,34 @@ export const SingleLocation = (props: SingleLocationProps) => {
   }
   interface initialValuesI {
     nombre: string
+    departamentSelected: string
   }
   const initialValues = {
     nombre: '',
+    departamentSelected: '',
   }
   useEffect(() => {
     reload()
   }, [url])
 
+  /* useEffect(() => {
+    first
+  
+    return () => {
+      second
+    }
+  }, [third])
+   */
+
   const onSubmit = (values: initialValuesI) => {
     if (values.nombre === '') {
       setUrl('/pymes')
     } else {
-      setUrl(`/pymes/nombre/${values.nombre.trim().toLowerCase()}`)
+      setUrl(
+        `/pymes/nombre/${values.nombre.trim().toLowerCase()}/departamento/${
+          values.departamentSelected
+        }`,
+      )
     }
   }
   return (
@@ -87,6 +103,18 @@ export const SingleLocation = (props: SingleLocationProps) => {
               placeholder="Buscar Pyme o categoria"
               className="inputSearch"
             />
+            {/* <Dropdown
+              options={departamentos}
+              value={selectedOption}
+              onChange={(e) => setSelectedOption(e.target.value)}
+            /> */}
+            <Field as="select" name="departamentSelected">
+              {departamentos.map((option) => (
+                <option key={option} value={option}>
+                  {option}
+                </option>
+              ))}
+            </Field>
 
             <Button
               type="submit"

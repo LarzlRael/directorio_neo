@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { IconFilterList } from './IconFilter'
 import { Search } from 'react-ionicons'
 import { sizeMedia } from '../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
