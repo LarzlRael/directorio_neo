@@ -1,4 +1,4 @@
-import { BagAddOutline, BeakerOutline, CheckmarkCircle, EyeOutline, LogoFacebook, LogoGoogle, LogoInstagram } from 'react-ionicons';
+import { IoBagAddOutline, IoBeakerOutline, IoCheckmarkCircle, IoEyeOutline, IoLogoFacebook, IoLogoGoogle, IoLogoInstagram } from 'react-icons/io5';
 import { Link } from "react-router-dom";
 import { PymeResponseResponse, RedesSociales } from '../interfaces/pymeResponse';
 
@@ -7,7 +7,7 @@ export const Cards = ({ nombre, urlImages, redes_sociales, verificado, _id }: Py
         <div className={`single-card flex ${verificado === 'verificado' && 'verificado'}`}>
             {verificado === 'verificado' &&
                 <div className="check">
-                    <CheckmarkCircle
+                    <IoCheckmarkCircle
                         width="45px"
                         height="45px"
                         color="#5EDD6A"
@@ -96,12 +96,12 @@ const LabelAndIcon = ({ nombre, urlRedSocial }: RedesSociales) => {
             alignItems: 'center',
         }}>
 
-            {nombre === 'Instagram' && <LogoInstagram
+            {nombre === 'Instagram' && <IoLogoInstagram
                 color="#C13584"
                 height="25px"
                 width="25px"
             />}
-            {nombre === 'Facebook' && <LogoFacebook
+            {nombre === 'Facebook' && <IoLogoFacebook
                 color="#3b5998"
                 height="25px"
                 width="25px"

@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { appName } from '../strings';
-import { MenuOutline } from 'react-ionicons';
+
+import { IoMenuOutline } from 'react-icons/io5';
 import { sizeMedia } from '../styles/mediaQuerys';
 
 const HeaderMainContainer = styled.div<{
@@ -158,7 +159,7 @@ export const HeaderBlack = () => {
                         </LabelLogo>
 
                         <MenuIconContainer>
-                            <MenuOutline
+                            <IoMenuOutline
                                 height="35px"
                                 width="35px"
                                 color="#FFF"

@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react';
-import { Close } from 'react-ionicons';
+import { IoClose } from 'react-icons/io5';
 import styled from 'styled-components';
 import { sizeMedia } from '../styles/mediaQuerys';
 
@@ -84,7 +84,7 @@ export const Modal = ({ children,
                             </EncabezadoModal>
                         }
                         <BotonCerrar onClick={() => changeState(false)}>
-                            <Close
+                            <IoClose
                                 width="1rem"
                                 height=" 1rem"
                                 color="#1766dc"

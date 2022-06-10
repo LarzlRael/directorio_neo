@@ -1,4 +1,5 @@
-import { ChevronBack } from 'react-ionicons';
+import { IoChevronBack } from 'react-icons/io5';
+
 import { useLocation, useParams } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
@@ -67,7 +68,7 @@ export const Indicator = ({ label }: Props) => {
 
             <Bread className="bread">
                 <div className="pointer">
-                    <ChevronBack
+                    <IoChevronBack
                         width="25px"
                         height="25px"
                         color="white"

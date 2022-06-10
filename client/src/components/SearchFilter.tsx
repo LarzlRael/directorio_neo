@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IconFilterList } from './IconFilter';
-import { Search } from 'react-ionicons';
+import { IoSearch } from 'react-icons/io5';
 import { sizeMedia } from '../styles/mediaQuerys';
 
 const FormContainer = styled.form`
@@ -109,7 +109,7 @@ export const SearchFilter = () => {
 
 
                     <Button>
-                        <Search
+                        <IoSearch
                             color={'#fff'}
 
                             height="20px"

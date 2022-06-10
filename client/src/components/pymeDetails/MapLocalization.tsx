@@ -1,6 +1,4 @@
-import React from 'react'
-
-import { MapOutline, } from 'react-ionicons';
+import { IoMapOutline, } from 'react-icons/io5';
 import ReactMapGL from 'react-map-gl';
 import { useDirectionsMap } from '../../hooks/useDirectionsMap';
 
@@ -34,7 +32,7 @@ export const MapLocalization = ({ localization, direction }: localizationProps) 
             <div className="flex info-category">
                 <div className="flex icon-info">
                     <div className="icono">
-                        <MapOutline
+                        <IoMapOutline
                             width="20px"
                             height="20px"
                         />

@@ -1,5 +1,5 @@
 
-import { CallOutline, MailOutline } from 'react-ionicons';
+import { IoCallOutline, IoMailOutline } from 'react-icons/io5';
 
 interface ContactProps {
     telefono: string | undefined;
@@ -15,7 +15,7 @@ export const ContacInfo = ({ telefono, email }: ContactProps) => {
             {telefono &&
                 <ContactInfo
                     icon={
-                        <CallOutline
+                        <IoCallOutline
                             width="20px"
                             height="20px"
                         />
@@ -29,7 +29,7 @@ export const ContacInfo = ({ telefono, email }: ContactProps) => {
             {email &&
                 <ContactInfo
                     icon={
-                        <MailOutline
+                        <IoMailOutline
                             width="20px"
                             height="20px"
                         />
