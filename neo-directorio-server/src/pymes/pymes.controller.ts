@@ -16,24 +16,45 @@ import { Body, UploadedFile } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { imageFileFilter } from '../utils';
 import { AuthGuard } from '@nestjs/passport';
+import { GetUser } from 'src/decorators/get-user.decorator';
+import { User } from 'src/auth/dto/schema/User.interface';
 
 @Controller('pymes')
 export class PymesController {
-  constructor(private pymeService: PymesService) { }
+  constructor(private pymeService: PymesService) {}
   @Get()
   getAllPymesInfo() {
     return this.pymeService.getAllPymes();
   }
 
-  @Get('/:nombre')
+  /* @Get('/:nombre/:departament') */
+  @Get('/:nombre/')
   getOne(@Param('nombre') nombre) {
     return this.pymeService.getOnePymeByName(nombre);
   }
 
+  @Get('/:field/:query/:field2/:query2')
+  findOPyme(
+    @Param('field') nombre,
+    @Param('query') query: string,
+    @Param('field2') nombre2,
+    @Param('query2') query2: string,
+  ) {
+    if (query.length === 0) {
+      return this.pymeService.getAllPymes();
+    } else {
+      return this.pymeService.findPymeByField(nombre, query, nombre2, query2);
+    }
+  }
+
   @Post('/newPyme')
   @UseGuards(AuthGuard('jwt'))
-  async newPyme(@Res() res: Response, @Body() pymeDTO: PymeDTO) {
-    await this.pymeService.addnewPyme(pymeDTO);
+  async newPyme(
+    @Res() res: Response,
+    @Body() pymeDTO: PymeDTO,
+    @GetUser() user: User,
+  ) {
+    await this.pymeService.addnewPyme(pymeDTO, user);
     return res.json({
       ok: true,
       message: 'nueva pyme agregada correctamente',
@@ -93,12 +114,13 @@ export class PymesController {
       });
     } else {
       res.status(HttpStatus.INTERNAL_SERVER_ERROR).json({
-        ok: true,
+        ok: false,
         msg: 'Error al subir imagen',
       });
     }
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/changeMainImage/:id/:index')
   async changeMainImage(
     @Res() res: Response,
@@ -113,7 +135,23 @@ export class PymesController {
     } else {
       res.json({
         ok: false,
-        message: 'hubo un errors',
+        message: 'hubo un error',
+      });
+    }
+  }
+
+  @Get('/verificarPyme/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async verifyPyme(@Res() res: Response, @Param('id') id) {
+    if (await this.pymeService.verifyPyme(id)) {
+      res.json({
+        ok: true,
+        message: 'Pyme Verificado',
+      });
+    } else {
+      res.json({
+        ok: false,
+        message: 'hubo un error',
       });
     }
   }

@@ -13,10 +13,12 @@ export interface PymeModel extends Document {
   coords: { lat: string; lng: string };
   direccion: string;
   description: string;
+  departamento: string;
   urlImage: string;
   profileImage: string;
   redes_sociales: RedesSocialesDto[];
   verificado: Verify;
+  idUser: string;
 }
 
 export interface RedesSocialesDto {

@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     @InjectModel('Users') private authModel: Model<User>,
     private jwtService: JwtService,
-  ) { }
+  ) {}
 
   async registerUser(authDto: AuthDto): Promise<boolean> {
     const { username, password } = authDto;

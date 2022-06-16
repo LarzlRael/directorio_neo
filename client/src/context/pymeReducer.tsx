@@ -1,20 +1,21 @@
-import { PymeResponseResponse } from '../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse';
 
 export interface PymeState {
 
     loading: boolean;
-    allPymes: PymeResponseResponse[],
-    onePyme: PymeResponseResponse | null,
+    allPymes: PymeInterfaceResponse[],
+    onePyme: PymeInterfaceResponse | null,
     notFound: boolean;
 }
 
 type PymeAction =
-    | { type: 'getAllPymes', payload: PymeResponseResponse[] }
-    | { type: 'getOnePyme', payload: PymeResponseResponse }
+    | { type: 'getAllPymes', payload: PymeInterfaceResponse[] }
+    | { type: 'getOnePyme', payload: PymeInterfaceResponse }
     /* | { type: 'signUp', payload: { token: string, usuario: CreadoPor } } */
     | { type: 'addError' }
     | { type: 'notFound' }
-    | { type: 'logout' }
+    | { type: 'loading' }
+    | { type: 'clearOnePyme', payload: PymeInterfaceResponse | null }
 
 export const pymeReducer = (state: PymeState, action: PymeAction): PymeState => {
 
@@ -39,17 +40,21 @@ export const pymeReducer = (state: PymeState, action: PymeAction): PymeState => 
         case 'notFound':
             return {
                 ...state,
+                loading: false,
                 notFound: true,
             };
-        /*
-                case 'logout':
-                case 'noAuthenticated':
-                    return {
-                        ...state,
-                        status: 'not-authenticated',
-                        token: null,
-                        user: null,
-                    }; */
+
+        case 'clearOnePyme':
+            return {
+                ...state,
+                onePyme: action.payload,
+                loading: true,
+            };
+        case 'loading':
+            return {
+                ...state,
+                loading: true,
+            };
 
 
 

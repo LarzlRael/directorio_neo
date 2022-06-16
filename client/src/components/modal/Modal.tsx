@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styled from 'styled-components';
-import { sizeMedia } from '../styles/mediaQuerys';
+import { sizeMedia } from '../../styles/mediaQuerys';
 
 export interface LayoutProps {
     children: React.ReactNode,
@@ -165,6 +165,5 @@ const BotonCerrar = styled.div`
     color: #1766dc;
     &:hover{
         background: #f2f2f2;
-
     }
 `;

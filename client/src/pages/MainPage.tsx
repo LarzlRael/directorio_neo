@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { lazy, Suspense } from 'react'
 import { Header } from '../components/Header'
 import { SearchFilter } from '../components/SearchFilter'
@@ -8,6 +9,12 @@ import { Loading } from '../components/Loading'
     import('../components/InformationPlaces'))
     .then(({ InformationPlaces }) => ({ default: InformationPlaces })),
 ); */
+=======
+import { lazy, Suspense } from 'react'
+import { informationPlacesData } from '../data/infoData'
+import { Loading } from '../components/widgets/loadings/Loading'
+import { Layout } from '../layout/Layout'
+>>>>>>> origin/dev
 
 const InformationPlaces = lazy(() =>
   import('../components/InformationPlaces').then(({ InformationPlaces }) => ({
@@ -17,6 +24,7 @@ const InformationPlaces = lazy(() =>
 
 export const MainPage = () => {
   return (
+<<<<<<< HEAD
     <>
       <div className="mainPage">
         <Header />
@@ -38,5 +46,22 @@ export const MainPage = () => {
         />
       </Suspense>
     </>
+=======
+    <Layout>
+      <Suspense fallback={<Loading />}>
+        {/* <div className="categories"> */}
+        <InformationPlaces
+          title="Descubre las pymes"
+          subtitle="Todas las categorias"
+          places={informationPlacesData}
+        />
+
+        {/* <InformationPlaces
+                    title="Whats is happening ? "
+                    subtitle="Discover events thoughout you"
+                    places={informationPlacesData} /> */}
+      </Suspense>
+    </Layout>
+>>>>>>> origin/dev
   )
 }

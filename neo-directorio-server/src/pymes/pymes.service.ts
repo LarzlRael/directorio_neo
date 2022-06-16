@@ -5,27 +5,49 @@ import { Model } from 'mongoose';
 import { PymeDTO, RedesSocialesDto } from './dto/pyme.dto';
 import { PymeModel } from './interfaces/project.interface';
 import { verifyValidId, swapArrayElements } from '../utils';
+import { User } from 'src/auth/dto/schema/User.interface';
+import { Verify } from './verify.enum';
+
 import toStream = require('buffer-to-stream');
 
 @Injectable()
 export class PymesService {
-  constructor(@InjectModel('Pymes') private pymeModel: Model<PymeModel>) { }
+  constructor(@InjectModel('Pymes') private pymeModel: Model<PymeModel>) {}
 
-  async addnewPyme(pymeDTO: PymeDTO) {
+  async addnewPyme(pymeDTO: PymeDTO, user: User) {
     const pyme = new this.pymeModel(pymeDTO);
+    pyme.idUser = user._id;
     return await pyme.save();
   }
   async getOnePymeByName(nombre: string): Promise<PymeModel> {
-    console.log(nombre);
-    const onePyme = await this.pymeModel.findOne({
-      nombre,
-    });
-    console.log(onePyme);
+    const onePyme = await this.pymeModel
+      .findOne({
+        nombre,
+      })
+      .populate('Users');
     return onePyme;
   }
   async getAllPymes() {
-    const onePyme = await this.pymeModel.find().sort({ verificado: 'desc' });
-    return onePyme;
+    const allPymes = await this.pymeModel
+      .find()
+      .sort({ verificado: 'desc' })
+      .populate('Users');
+    return allPymes;
+  }
+  async findPymeByField(
+    field: string,
+    query: string,
+    field2: string,
+    query2: string,
+  ) {
+    if (query.length === 0) {
+      return await this.getAllPymes();
+    } else {
+      return await this.pymeModel.find({
+        [field]: { $regex: '.*' + query + '.*' },
+        [field2]: { $regex: '.*' + query2 + '.*' },
+      });
+    }
   }
 
   async addSocialNetworks(
@@ -106,7 +128,6 @@ export class PymesService {
 
         try {
           getPyme.profileImage = uploadApiResponse.url;
-          console.log(getPyme);
           await getPyme.save();
         } catch (error) {
           console.log(error);
@@ -119,7 +140,6 @@ export class PymesService {
     return true;
   }
   async changeMainImage(id: string, index: number): Promise<boolean> {
-
     const currentPyme = await this.pymeModel.findOne({ _id: id });
 
     if (index >= currentPyme.urlImages.length) {
@@ -129,13 +149,29 @@ export class PymesService {
     /* console.log(JSON.stringify(currentPyme.urlImages, null, " ")); */
 
     try {
-      const updated = await this.pymeModel.findByIdAndUpdate(
+      await this.pymeModel.findByIdAndUpdate(
         { _id: id },
         {
           urlImages: swapArrayElements(currentPyme.urlImages, 0, index),
         },
       );
-      console.log(updated);
+
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
+  async verifyPyme(id: string): Promise<boolean> {
+    if (!verifyValidId(id)) {
+      return false;
+    }
+
+    try {
+      await this.pymeModel.findByIdAndUpdate(
+        { _id: id },
+        { verificado: Verify.VERIFICADO },
+      );
       return true;
     } catch (error) {
       console.log(error);

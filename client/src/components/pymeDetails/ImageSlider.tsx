@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react'
 import { useAnimationn } from '../../hooks/useAnimaton'
 import { Modal } from '../Modal'
+=======
+import { useState, useEffect } from 'react'
+import { useAnimationn } from '../../hooks/useAnimaton'
+import { Modal } from '../modal/Modal'
+>>>>>>> origin/dev
 
 interface PropsSliderImages {
   urlImages: string[]
@@ -79,6 +85,7 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
           />
         </div>
 
+<<<<<<< HEAD
         <div className="images-info">
           {urlImages.map((image, i) => (
             <div className="image-item pointer" key={i}>
@@ -91,6 +98,22 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
             </div>
           ))}
         </div>
+=======
+        {urlImages.length >= 2 && (
+          <div className="images-info">
+            {urlImages.map((image, i) => (
+              <div className="image-item pointer" key={i}>
+                <img
+                  src={`${image}`}
+                  alt="imagen"
+                  onClick={() => changeImage(`${image}`, i)}
+                  onAnimationEnd={() => setAnimation(false)}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+>>>>>>> origin/dev
       </div>
 
       <Modal

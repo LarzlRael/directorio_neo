@@ -1,5 +1,6 @@
 $title-color: #202428;
 $padding-responsive: 1rem;
+
 .one-place {
     display: flex;
     margin: 2rem auto;
@@ -8,6 +9,7 @@ $padding-responsive: 1rem;
     max-width: $container-main;
     color: #7a82a6;
     @include media(xs_sm) {
+        margin: auto;
         flex-direction: column-reverse;
         width: 90%;
     }
@@ -54,7 +56,6 @@ $padding-responsive: 1rem;
                 justify-content: space-between;
                 flex-wrap: wrap;
                 margin: 0.8rem 0;
-            
             }
             @include media(xs_sm) {
                 padding: $padding-responsive;
@@ -63,12 +64,12 @@ $padding-responsive: 1rem;
         .location {
             margin-top: 2rem;
             padding: 2rem;
-            .spacer{
+            .spacer {
                 width: 100%;
             }
             @include media(xs_sm) {
                 padding: $padding-responsive;
-                .spacer{
+                .spacer {
                     width: 20%;
                 }
             }
@@ -81,9 +82,15 @@ $padding-responsive: 1rem;
     .informationPlace {
         flex: 1;
         margin-left: 2rem;
+
         @include media(xs_sm) {
             margin-left: 0;
             margin-top: 1rem;
+            .heart {
+                position: absolute;
+                top: 0;
+                right: 0;
+            }
         }
         .heart {
             position: absolute;

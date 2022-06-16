@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from 'styled-components';
+import { primaryColor } from '../../../context/themeColors';
 
 export const Loading = () => {
     return (
@@ -28,7 +28,7 @@ div {
     border: 8px solid #fff;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #4c8bf5 transparent transparent transparent;
+    border-color: ${primaryColor} transparent transparent transparent;
     }
 div:nth-child(1) {
     animation-delay: -0.45s;
@@ -46,6 +46,4 @@ div:nth-child(3) {
     100% {
     transform: rotate(360deg);
     }
-
-
 `;
