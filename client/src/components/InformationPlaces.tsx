@@ -1,4 +1,4 @@
-
+import React from 'react';
 import styled from 'styled-components';
 import { sizeMedia } from '../styles/mediaQuerys';
 import { LinkStyled } from '../styles/SharedStyles';

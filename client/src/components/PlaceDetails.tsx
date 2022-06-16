@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-
+import React from 'react';
 import { Indicator } from '../components/Indicator'
 import { useContext, useEffect } from 'react';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';

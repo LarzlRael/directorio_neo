@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { IoCallOutline, IoMailOutline } from 'react-icons/io5';
 
 interface ContactProps {

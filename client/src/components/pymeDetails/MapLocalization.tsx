@@ -1,11 +1,13 @@
+import React from 'react';
 import { IoMapOutline, } from 'react-icons/io5';
 import ReactMapGL from 'react-map-gl';
 import { useDirectionsMap } from '../../hooks/useDirectionsMap';
 
-var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
+/* var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js'); */
+// eslint-disable-next-line import/no-webpack-loader-syntax
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+/* mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default; */
 
 
 /* const mapboxglAccessToken = process.env.REACT_APP_MAPBOX_KEY; */

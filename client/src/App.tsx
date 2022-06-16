@@ -1,3 +1,4 @@
+import React from 'react'
 
 import { PymeProvider } from './context/PymeContext';
 import { ThemeProvider } from './context/ThemeContext';

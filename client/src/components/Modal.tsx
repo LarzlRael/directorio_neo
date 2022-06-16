@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { IoClose } from 'react-icons/io5';
 import styled from 'styled-components';
 import { sizeMedia } from '../styles/mediaQuerys';

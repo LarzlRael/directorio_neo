@@ -1,46 +1,44 @@
-import { useState, useEffect } from 'react';
-import { useAnimationn } from '../../hooks/useAnimaton';
-import { Modal } from '../Modal';
+import React, { useState, useEffect } from 'react'
+import { useAnimationn } from '../../hooks/useAnimaton'
+import { Modal } from '../Modal'
 
 interface PropsSliderImages {
-    urlImages: string[],
+  urlImages: string[]
 }
 export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
-
-    const [currentImage, setCurrentImage] = useState({
-        currentUrl: urlImages[0],
-        currentIndex: 0
-    });
-    useEffect(() => {
-        setCurrentImage({
-            currentUrl: urlImages[0],
-            currentIndex: 0
-        });
-        return () => {
-            setCurrentImage({
-                currentUrl: '',
-                currentIndex: 0
-            });
-        }
-    }, [urlImages, setCurrentImage]);
-
-
-    const { animation, setAnimation } = useAnimationn();
-
-    const [modalState, setModalState] = useState(false);
-
-    const changeStatexd = () => {
-        setModalState(true);
+  const [currentImage, setCurrentImage] = useState({
+    currentUrl: urlImages[0],
+    currentIndex: 0,
+  })
+  useEffect(() => {
+    setCurrentImage({
+      currentUrl: urlImages[0],
+      currentIndex: 0,
+    })
+    return () => {
+      setCurrentImage({
+        currentUrl: '',
+        currentIndex: 0,
+      })
     }
+  }, [urlImages, setCurrentImage])
 
-    const changeImage = (url: string, index: number): void => {
-        setAnimation(true);
-        setCurrentImage({
-            currentUrl: url,
-            currentIndex: index
-        });
-    }
-    /* const changeNextImage = () => {
+  const { animation, setAnimation } = useAnimationn()
+
+  const [modalState, setModalState] = useState(false)
+
+  const changeStatexd = () => {
+    setModalState(true)
+  }
+
+  const changeImage = (url: string, index: number): void => {
+    setAnimation(true)
+    setCurrentImage({
+      currentUrl: url,
+      currentIndex: index,
+    })
+  }
+  /* const changeNextImage = () => {
         setAnimation(true);
 
         setCurrentImage({
@@ -57,7 +55,7 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
         });
     } */
 
-    /* return {
+  /* return {
         changeImage,
         changeNextImage,
         changePrevImage,
@@ -66,61 +64,51 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
         animation,
         setAnimation
     }; */
-    return (
-        <>
-            <div className='images-container'>
-                <div
-                    className=
-                    {`main-image pointer ${animation
-                        ? 'fadeInAnimation' : ''}`}
-                    onAnimationEnd={() => setAnimation(false)}
+  return (
+    <>
+      <div className="images-container">
+        <div
+          className={`main-image pointer ${animation ? 'fadeInAnimation' : ''}`}
+          onAnimationEnd={() => setAnimation(false)}
+          onClick={changeStatexd}
+        >
+          <img
+            className="main-current-image"
+            src={currentImage.currentUrl}
+            alt=""
+          />
+        </div>
 
-                    onClick={
-                        changeStatexd
-                    }
-                >
-
-                    <img
-                        className="main-current-image"
-                        src={currentImage.currentUrl}
-
-                        alt="" />
-                </div>
-
-                <div className="images-info">
-
-                    {
-                        urlImages.map((image, i) => (
-                            <div className="image-item pointer"
-                                key={i}
-                            >
-                                <img
-                                    src={`${image}`}
-                                    alt="que fue :D"
-                                    onClick={
-                                        () => changeImage(`${image}`, i)
-                                    }
-                                    onAnimationEnd={() => setAnimation(false)}
-                                />
-                            </div>
-                        ))}
-                </div>
+        <div className="images-info">
+          {urlImages.map((image, i) => (
+            <div className="image-item pointer" key={i}>
+              <img
+                src={`${image}`}
+                alt="que fue :D"
+                onClick={() => changeImage(`${image}`, i)}
+                onAnimationEnd={() => setAnimation(false)}
+              />
             </div>
+          ))}
+        </div>
+      </div>
 
-            <Modal
-                state={modalState}
-                changeState={setModalState}
-                titulo="que fue"
-                mostrarHeader={false}
-                padding="0px"
-            >
-                <img src={currentImage.currentUrl} alt=""
-                    style={{
-                        width: '100%',
-                        height: '100%',
-                    }}
-                />
-            </Modal>
-        </>
-    )
-};
+      <Modal
+        state={modalState}
+        changeState={setModalState}
+        titulo="que fue"
+        mostrarHeader={false}
+        padding="0px"
+      >
+        <img
+          src={currentImage.currentUrl}
+          alt=""
+          style={{
+            width: '100%',
+            height: '100%',
+          }}
+        />
+      </Modal>
+    </>
+  )
+}

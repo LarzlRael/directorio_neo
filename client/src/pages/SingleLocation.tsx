@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Indicator } from '../components/Indicator'
 import { IconFilterList } from '../components/IconFilter';
 import { Cards } from '../components/Cards';
