@@ -1,13 +1,8 @@
 import React, { lazy, Suspense } from 'react'
-import { Header } from '../components/Header'
-import { SearchFilter } from '../components/SearchFilter'
 import { informationPlacesData } from '../data/infoData'
-/* import { InformationPlaces } from '../components/InformationPlaces'; */
 import { Loading } from '../components/widgets/loadings/Loading'
-/* const InformationPlaces = lazy(() =>
-    import('../components/InformationPlaces'))
-    .then(({ InformationPlaces }) => ({ default: InformationPlaces })),
-); */
+import { Layout } from '../layout/Layout';
+
 
 const InformationPlaces = lazy(() =>
   import('../components/InformationPlaces').then(({ InformationPlaces }) => ({
@@ -17,26 +12,20 @@ const InformationPlaces = lazy(() =>
 
 export const MainPage = () => {
   return (
-    <>
-      <div className="mainPage">
-        <Header />
-        <SearchFilter />
-      </div>
+    <Layout>
       <Suspense fallback={<Loading />}>
         {/* <div className="categories"> */}
         <InformationPlaces
-          title="Find all places Near you"
-          subtitle="this is your subtitle"
+          title="Descubre las pymes"
+          subtitle="Todas las categorias"
           places={informationPlacesData}
         />
-        {/* </div> */}
 
-        <InformationPlaces
-          title="Whats is happening ? "
-          subtitle="Discover events thoughout you"
-          places={informationPlacesData}
-        />
+        {/* <InformationPlaces
+                    title="Whats is happening ? "
+                    subtitle="Discover events thoughout you"
+                    places={informationPlacesData} /> */}
       </Suspense>
-    </>
+    </Layout>
   )
 }

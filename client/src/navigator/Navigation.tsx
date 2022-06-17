@@ -2,10 +2,10 @@ import React from 'react'
 import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 /* import { Page2 } from "../pages/Page2"; */
-import { Footer } from '../components/Footer'
 import { LoadingPage } from '../pages/LoadingPage'
 
 /* import { PlaceDetails } from '../components/PlaceDetails'; */
+import { Footer } from '../layout/Footer'
 
 const PymeDetails = lazy(() =>
   import('../components/PymeDetails').then(({ PymeDetails }) => ({

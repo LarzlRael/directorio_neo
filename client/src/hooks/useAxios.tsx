@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios, { AxiosRequestConfig } from 'axios'
-
 axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL?.toString();
 
 

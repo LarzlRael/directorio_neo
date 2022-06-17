@@ -1,3 +1,4 @@
+import React from 'react'
 import styled from 'styled-components'
 import { primaryColor } from '../context/themeColors'
 import { footerString } from '../strings'
@@ -10,7 +11,6 @@ const FooterStyled = styled.footer`
   display: flex;
   justify-content: center;
   height: 90px;
-  margin-top: 3rem;
 `
 
 export const Footer = () => {
