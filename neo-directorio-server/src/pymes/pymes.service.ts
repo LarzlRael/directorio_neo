@@ -34,12 +34,18 @@ export class PymesService {
       .populate('Users');
     return allPymes;
   }
-  async findPymeByField(field: string, query: string) {
+  async findPymeByField(
+    field: string,
+    query: string,
+    field2: string,
+    query2: string,
+  ) {
     if (query.length === 0) {
       return await this.getAllPymes();
     } else {
       return await this.pymeModel.find({
         [field]: { $regex: '.*' + query + '.*' },
+        [field2]: { $regex: '.*' + query2 + '.*' },
       });
     }
   }

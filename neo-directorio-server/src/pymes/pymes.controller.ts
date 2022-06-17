@@ -27,17 +27,23 @@ export class PymesController {
     return this.pymeService.getAllPymes();
   }
 
-  @Get('/:nombre')
+  /* @Get('/:nombre/:departament') */
+  @Get('/:nombre/')
   getOne(@Param('nombre') nombre) {
     return this.pymeService.getOnePymeByName(nombre);
   }
 
-  @Get('/:field/:query')
-  findOPyme(@Param('field') nombre, @Param('query') query: string) {
+  @Get('/:field/:query/:field2/:query2')
+  findOPyme(
+    @Param('field') nombre,
+    @Param('query') query: string,
+    @Param('field2') nombre2,
+    @Param('query2') query2: string,
+  ) {
     if (query.length === 0) {
       return this.pymeService.getAllPymes();
     } else {
-      return this.pymeService.findPymeByField(nombre, query);
+      return this.pymeService.findPymeByField(nombre, query, nombre2, query2);
     }
   }
 
