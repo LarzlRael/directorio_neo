@@ -1,30 +1,5 @@
-<<<<<<< HEAD
-import React from 'react';
-import { Indicator } from '../components/Indicator'
-import { IconFilterList } from '../components/IconFilter';
-import { Cards } from '../components/Cards';
-import { useContext, useEffect } from 'react';
-import { HeaderBlack } from '../components/HeaderBlack';
-import styled from 'styled-components';
-import { PymeContext } from '../context/PymeContext';
-import { v4 as uuidv4 } from 'uuid';
-uuidv4(); // ⇨ '1b9d6bcd-bbfd-4b2d-9b5d-ab8dfbbd4bed'
+import React, { useState, useEffect } from 'react'
 
-
-export const SingleLocation = () => {
-
-    const { allPymes, getAllPymes } = useContext(PymeContext);
-    useEffect(() => {
-        const prevTitle = document.title;
-        document.title = "New tittle";
-        return () => {
-            document.title = prevTitle;
-        }
-    }, []);
-    useEffect(() => {
-        getAllPymes();
-    }, []);
-=======
 import { Indicator } from '../layout/Indicator'
 import { Cards } from '../components/widgets/card/Cards'
 import { HeaderBlack } from '../layout/HeaderBlack'
@@ -39,13 +14,12 @@ import { RouteComponentProps } from 'react-router-dom'
 import useAxiosAuth from '../hooks/useAxios'
 import { Formik, Form, Field } from 'formik'
 import { Button } from '../components/buttons/Button'
-import { Search } from 'react-ionicons'
-import { useState, useEffect } from 'react'
+import { IoSearch } from 'react-icons/io5'
+
 import { validateArray } from '../components/utils/validation/validation'
 import { Label } from '../components/text/Label'
 import { primaryColor } from '../context/themeColors'
 import { departamentos } from '../data/infoData'
->>>>>>> origin/dev
 
 interface SingleLocationProps extends RouteComponentProps<any> {
   /* label?: string */
@@ -64,7 +38,7 @@ export const SingleLocation = (props: SingleLocationProps) => {
   const preconfigArray = (
     array: PymeInterfaceResponse[],
   ): PymeInterfaceResponse[] => {
-    return array.map((item: PymeInterfaceResponse) => {
+    return array?.map((item: PymeInterfaceResponse) => {
       if (item.urlImages.length !== 0) {
         const imagesConverted = item.urlImages.map((image, i) => {
           const splitString = image.split('upload/')
@@ -147,7 +121,7 @@ export const SingleLocation = (props: SingleLocationProps) => {
             <Button
               type="submit"
               background={primaryColor}
-              icon={<Search color="#fff" height="16px" width="16px" />}
+              icon={<IoSearch color="#fff" height="16px" width="16px" />}
             >
               Buscar
             </Button>

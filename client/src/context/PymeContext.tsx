@@ -1,15 +1,11 @@
-<<<<<<< HEAD
+
+
 import React from 'react'
 import { createContext, useReducer } from 'react';
-import { PymeResponseResponse } from '../interfaces/pymeResponse';
+import { PymeInterfaceResponse } from '../interfaces/pymeResponse';
 import { serverAPI } from '../provider/serverProvider';
 import { pymeReducer, PymeState } from './pymeReducer';
 import { capitalizeFirstLetter } from '../components/utils/utils';
-=======
-import { createContext, useReducer } from 'react'
-import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
-import { pymeReducer, PymeState } from './pymeReducer'
->>>>>>> origin/dev
 
 type PymeContextProps = {
   loading: boolean

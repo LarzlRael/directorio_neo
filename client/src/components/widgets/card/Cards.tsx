@@ -1,4 +1,9 @@
-import { CheckmarkCircle, LogoFacebook, LogoInstagram } from 'react-ionicons'
+import React from 'react'
+import {
+  IoCheckmarkCircle,
+  IoLogoFacebook,
+  IoLogoInstagram,
+} from 'react-icons/io5'
 import { Link } from 'react-router-dom'
 import {
   PymeInterfaceResponse,
@@ -22,7 +27,7 @@ export const Cards = ({
     >
       {verificado === 'verificado' && (
         <div className="check">
-          <CheckmarkCircle width="45px" height="45px" color="#5EDD6A" />
+          <IoCheckmarkCircle width="45px" height="45px" color="#5EDD6A" />
         </div>
       )}
 
@@ -66,10 +71,10 @@ const LabelAndIcon = ({ nombre, urlRedSocial }: RedesSociales) => {
       }}
     >
       {nombre === 'Instagram' && (
-        <LogoInstagram color="#C13584" height="25px" width="25px" />
+        <IoLogoInstagram color="#C13584" height="25px" width="25px" />
       )}
       {nombre === 'Facebook' && (
-        <LogoFacebook color="#3b5998" height="25px" width="25px" />
+        <IoLogoFacebook color="#3b5998" height="25px" width="25px" />
       )}
 
       <a

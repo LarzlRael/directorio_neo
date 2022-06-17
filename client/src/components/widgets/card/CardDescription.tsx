@@ -1,3 +1,4 @@
+import React from 'react'
 import { H2 } from '../../text/'
 interface CardDescriptionProps {
   title: string

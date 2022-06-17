@@ -1,4 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react'
 
 import { Indicator } from '../layout/Indicator'
 import { useEffect } from 'react'
@@ -106,7 +106,7 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
               )}
             </div>
 
-            <Profile pyme={onePyme} />
+            <Profile {...onePyme} />
           </div>
         </div>
       ) : (

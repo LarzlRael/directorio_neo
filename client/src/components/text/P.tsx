@@ -1,4 +1,5 @@
-interface Pprops {
+import React from 'react'
+interface Props {
   children: React.ReactNode
   fontSize?: string
   color?: string
@@ -14,7 +15,7 @@ export const P = ({
   textAlign,
   lineHeight,
   children,
-}: Pprops) => {
+}: Props) => {
   return (
     <p
       style={{

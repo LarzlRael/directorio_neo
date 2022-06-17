@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 import React from 'react';
 import { IoCallOutline, IoMailOutline } from 'react-icons/io5';
-=======
-import { CallOutline, MailOutline } from 'react-ionicons'
 import { Label } from '../text'
 import { CardDescription } from '../widgets/card'
->>>>>>> origin/dev
 
 interface ContactProps {
   telefono: string | undefined
@@ -13,7 +9,6 @@ interface ContactProps {
 }
 
 export const ContacInfo = ({ telefono, email }: ContactProps) => {
-<<<<<<< HEAD
     return (
         <div className="border-box contact-information">
             <label className="title-content">
@@ -48,30 +43,6 @@ export const ContacInfo = ({ telefono, email }: ContactProps) => {
 
         </div>
     )
-=======
-  return (
-    <CardDescription
-      title="Informacion de contacto"
-      className="contact-information"
-    >
-      {telefono && (
-        <ContactInfo
-          icon={<CallOutline width="20px" height="20px" />}
-          title="Telefono"
-          contactInfo={telefono}
-        />
-      )}
-
-      {email && (
-        <ContactInfo
-          icon={<MailOutline width="20px" height="20px" />}
-          title="Email"
-          contactInfo={email}
-        />
-      )}
-    </CardDescription>
-  )
->>>>>>> origin/dev
 }
 
 interface Props {

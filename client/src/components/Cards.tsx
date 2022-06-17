@@ -9,7 +9,7 @@ import {
   IoLogoInstagram,
 } from 'react-icons/io5'
 import { Link } from 'react-router-dom'
-import { PymeResponseResponse, RedesSociales } from '../interfaces/pymeResponse'
+import { PymeInterfaceResponse, RedesSociales } from '../interfaces/pymeResponse'
 
 export const Cards = ({
   nombre,
@@ -17,7 +17,7 @@ export const Cards = ({
   redes_sociales,
   verificado,
   _id,
-}: PymeResponseResponse) => {
+}: PymeInterfaceResponse) => {
   return (
     <div
       className={`single-card flex ${
@@ -71,7 +71,7 @@ export const Cards = ({
                 }
                     label="De contacto"
                 /> */}
-        {redes_sociales.map((red_social) => (
+        {redes_sociales!.map((red_social) => (
           <LabelAndIcon {...red_social} />
         ))}
         {/*  <div className="info-card flex">

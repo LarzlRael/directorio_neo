@@ -1,21 +1,9 @@
-<<<<<<< HEAD
 import React from 'react'
-import { lazy, Suspense } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-} from "react-router-dom";
-import { Page2 } from "../pages/Page2";
-import { Footer } from '../components/Footer';
-import ScrollToTop from '../hooks/scrollTop';
-=======
 import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+/* import { Page2 } from "../pages/Page2"; */
+import { Footer } from '../components/Footer'
 import { LoadingPage } from '../pages/LoadingPage'
-import { Footer } from '../layout/Footer'
-import ScrollToTop from '../layout/ScrollTop'
->>>>>>> origin/dev
 
 /* import { PlaceDetails } from '../components/PlaceDetails'; */
 
@@ -37,7 +25,7 @@ export const NavigatorMain = () => {
   return (
     <Router>
       <Suspense fallback={<LoadingPage />}>
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
         <Switch>
           <Route path="/" exact component={MainPage} />
 

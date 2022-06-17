@@ -1,4 +1,5 @@
-import { ChevronBack } from 'react-ionicons'
+import React from 'react'
+import { IoChevronBack } from 'react-icons/io5';
 import ToolTip from '../components/boxes/ToolTip'
 
 interface backIconProps {
@@ -8,7 +9,7 @@ interface backIconProps {
 export const BackIcon = ({ onClick, label = 'Regresar' }: backIconProps) => {
   return (
     <ToolTip content={label} theme="light">
-      <ChevronBack width="30px" height="30px" color="white" onClick={onClick} />
+      <IoChevronBack width="30px" height="30px" color="white" onClick={onClick} />
     </ToolTip>
   )
 }
