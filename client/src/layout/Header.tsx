@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { appName } from '../strings'
-import { MenuOutline } from 'react-ionicons'
+import { IoMenuOutline } from 'react-icons/io5'
 import { sizeMedia } from '../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { useWindowSize } from '../hooks/useWindows'
@@ -142,7 +142,7 @@ export const Header = () => {
           </Link>
 
           <MenuIconContainer>
-            <MenuOutline
+            <IoMenuOutline
               height="35px"
               width="35px"
               color="#FFF"

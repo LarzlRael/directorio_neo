@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from "axios";
-axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
+axios.defaults.baseURL = import.meta.env.VITE_SERVER_URL?.toString();
 
 axios.interceptors.request.use(
     (config: any) => {
