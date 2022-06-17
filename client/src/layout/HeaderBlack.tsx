@@ -133,9 +133,6 @@ export const HeaderBlack = () => {
             </MenuIconContainer> */}
             </div>
           </Link>
-          {/*    <label>
-                    #1 Business directory
-                </label> */}
         </div>
         {/*   open-menu
             close-menu */}

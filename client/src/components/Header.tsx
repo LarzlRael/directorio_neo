@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { appName } from '../strings'
 import { IoMenuOutline } from 'react-icons/io5'
 import { sizeMedia } from '../styles/mediaQuerys'
+import { Label } from './text/Label'
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -13,6 +14,7 @@ const HeaderContainer = styled.div`
   max-width: 1000px;
   margin: 3rem auto;
   /*  */
+  justify-content: space-between;
   align-items: center;
   transition: 0.3s ease all;
 
@@ -100,24 +102,35 @@ export const Header = () => {
   return (
     <HeaderContainer>
       <div className="logoContainer">
-        <div className="logName">
-          <LabelLogo fontSize="1.6rem" to="/">
-            {appName}
-          </LabelLogo>
-
-          <MenuIconContainer>
-            <IoMenuOutline
-              height="35px"
-              width="35px"
-              color="#FFF"
-              onClick={menu ? hideMenu : showMenu}
+        <Link
+          to="/"
+          style={{
+            textDecoration: 'none',
+          }}
+        >
+          <div className="logoNameDark">
+            <img
+              style={{
+                height: '35px',
+                width: '100px',
+              }}
+              src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
+              alt="Nego LOGO"
             />
-          </MenuIconContainer>
-        </div>
+            <Label color={'white'} fontSize="1.6rem">
+              {appName}
+            </Label>
 
-        {/*    <label>
-                    #1 Business directory
-                </label> */}
+            <MenuIconContainer>
+              <IoMenuOutline
+                height="35px"
+                width="35px"
+                color="#fff"
+                onClick={menu ? hideMenu : showMenu}
+              />
+            </MenuIconContainer>
+          </div>
+        </Link>
       </div>
       {/*   open-menu
             close-menu */}

@@ -85,6 +85,10 @@ $width: 80%;
 }
 
 .logoContainer {
+    .logName{
+        display: flex;
+        justify-content: space-between;
+    }
     @include media(xs_sm) {
         width: 100%;
     }
