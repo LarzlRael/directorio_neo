@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { sizeMedia } from '../styles/mediaQuerys';
+import { sizeMedia } from '../../styles/mediaQuerys';
 export interface IconFilter {
     title: string;
     iconName: string;

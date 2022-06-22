@@ -13,7 +13,7 @@ const PymeDetails = lazy(() =>
   })),
 )
 const MainPage = lazy(() =>
-  import('../pages/MainPage').then(({ MainPage }) => ({ default: MainPage })),
+  import('../../pages/main-page').then(({ MainPage }) => ({ default: MainPage })),
 )
 const SingleLocation = lazy(() =>
   import('../pages/SingleLocation').then(({ SingleLocation }) => ({

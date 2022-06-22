@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 import { appName } from '../strings'
 import { IoMenuOutline } from 'react-icons/io5'
-import { sizeMedia } from '../styles/mediaQuerys'
+import { sizeMedia } from '../../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { useWindowSize } from '../hooks/useWindows'
+import Link from 'next/link'
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -123,12 +124,12 @@ export const Header = () => {
     <HeaderContainer>
       <div className="logoContainer">
         <div className="logoName">
-          <Link
-            to="/"
+          {/* <Link
+            href="/qe"
             style={{
               textDecoration: 'none',
             }}
-          >
+          > */}
             <img
               style={{
                 height: '35px',
@@ -137,10 +138,10 @@ export const Header = () => {
               src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
               alt="Nego LOGO"
             />
-            <LabelLogo fontSize="1.5rem" to="/">
+            <LabelLogo fontSize="1.5rem" href="/xd">
               <span>{appName}</span>
             </LabelLogo>
-          </Link>
+          {/* </Link> */}
 
           <MenuIconContainer>
             <IoMenuOutline
@@ -154,16 +155,16 @@ export const Header = () => {
       </div>
 
       <Links className={menu ? 'open-menu' : 'close-menu'}>
-        <LabelLink onClick={linkClickeable} to="/">
+        <LabelLink onClick={linkClickeable} href="/333">
           Inicio
         </LabelLink>
-        <LabelLink to="/" onClick={linkClickeable}>
+        <LabelLink href="/test2" onClick={linkClickeable}>
           Listado
         </LabelLink>{' '}
-        <LabelLink to="/" onClick={linkClickeable}>
+        <LabelLink href="/test3" onClick={linkClickeable}>
           Categorias
         </LabelLink>
-        <LabelLink to="/" onClick={linkClickeable}>
+        <LabelLink href="/test4" onClick={linkClickeable}>
           Mi cuenta
         </LabelLink>
       </Links>

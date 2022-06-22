@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { sizeMedia } from '../../styles/mediaQuerys'
+import { sizeMedia } from '../../../styles/mediaQuerys'
 import { primaryColor } from '../../context/themeColors'
 import { ReactElement } from 'react'
 export const ButtonStyle = styled.button<{

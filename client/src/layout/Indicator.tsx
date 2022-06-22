@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router'
 import { RouteComponentProps } from 'react-router-dom'
 import styled from 'styled-components'
-import { sizeMedia } from '../styles/mediaQuerys'
+import { sizeMedia } from '../../styles/mediaQuerys'
 import { BackIcon } from './BackIcon'
 import { H2, Span } from '../components/text/'
 

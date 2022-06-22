@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+
 import styled from 'styled-components'
 import { appName } from '../strings'
-import { sizeMedia } from '../styles/mediaQuerys'
+import { sizeMedia } from '../../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { Label } from '../components/text/Label'
+import Link from 'next/link'
 
 const HeaderMainContainer = styled.div<{
   blackTheme: boolean
@@ -101,7 +102,7 @@ export const HeaderBlack = () => {
       <HeaderContainer>
         <div className="logoContainer">
           <Link
-            to="/"
+            href="/"
             style={{
               textDecoration: 'none',
             }}
@@ -139,19 +140,19 @@ export const HeaderBlack = () => {
         <Links className={menu ? 'open-menu' : 'close-menu'}>
           {/* <Links className={menu ? 'close-menu' : 'open-menu'}> */}
 
-          <LabelLink blackTheme={className} to="/">
+          <LabelLink blackTheme={className} href="/">
             Inicio
           </LabelLink>
 
-          <LabelLink blackTheme={className} to="/">
+          <LabelLink blackTheme={className} href="/">
             Listado
           </LabelLink>
 
-          <LabelLink blackTheme={className} to="/">
+          <LabelLink blackTheme={className} href="/">
             Categorias
           </LabelLink>
 
-          <LabelLink blackTheme={className} to="/">
+          <LabelLink blackTheme={className} href="/">
             Mi cuenta
           </LabelLink>
         </Links>

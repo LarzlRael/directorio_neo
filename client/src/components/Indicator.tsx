@@ -1,11 +1,11 @@
 import React from 'react'
 import { IoChevronBack } from 'react-icons/io5'
 
-import { useLocation, useParams } from 'react-router'
-import { useHistory } from 'react-router-dom'
+/* import { useLocation, useParams } from 'react-router'
+import { useHistory } from 'react-router-dom' */
 import styled from 'styled-components'
-import { sizeMedia } from '../styles/mediaQuerys'
-
+import { sizeMedia } from '../../styles/mediaQuerys'
+import { useRouter } from 'next/router'
 const Label = styled.label<{
   fontSize?: string
   marginbottom?: string
@@ -50,21 +50,19 @@ interface Props {
   label?: string
 }
 export const Indicator = ({ label }: Props) => {
-  const { state } = useLocation<StateType>()
+  const router = useRouter()
+  /* router.pa
+  const { state } = useLocation<StateType>() */
 
-  let { title } = useParams<RouteParams>()
+  const { id } = router.query
 
-  title = title.replace('-', ' ')
-
-  const history = useHistory()
-  const { nombre } = useParams<{ nombre: string }>()
+  const { main } = router.query
+  /* const title = main?.replace('-', ' ') */
 
   return (
     <BreadContainer
       backGroundImage={
-        state !== undefined
-          ? state.backGroundImage
-          : 'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg'
+        'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg'
       }
     >
       <Bread className="bread">
@@ -73,14 +71,14 @@ export const Indicator = ({ label }: Props) => {
             width="25px"
             height="25px"
             color="white"
-            onClick={history.goBack}
+            onClick={history.back}
           />
         </div>
         <Label color="white" fontSize="2.3rem">
-          {label ? label : title}
+          {label ? label : 'title'}
         </Label>
         <Label fontSize=".9rem" color="white">
-          Home / {label ? label : title} {nombre && ' / ' + nombre}
+          Home / {label ? label : 'title'} {'nombre' && ' / ' + 'nombre'}
         </Label>
       </Bread>
     </BreadContainer>

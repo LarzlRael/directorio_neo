@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { IoSearch } from 'react-icons/io5'
-import { sizeMedia } from '../styles/mediaQuerys'
+import { sizeMedia } from '../../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { H2, Span } from './text'
 import { Form, Formik, Field } from 'formik'

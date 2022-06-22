@@ -1,16 +1,18 @@
+import Link from 'next/link'
 import React from 'react'
 import {
   IoCheckmarkCircle,
   IoLogoFacebook,
   IoLogoInstagram,
 } from 'react-icons/io5'
-import { Link } from 'react-router-dom'
+
 import {
   PymeInterfaceResponse,
   RedesSociales,
 } from '../../../interfaces/pymeResponse'
 import { Label } from '../../text'
 import { capitalizeFirstLetter } from '../../utils/utils'
+
 
 export const Cards = ({
   nombre,
@@ -31,7 +33,7 @@ export const Cards = ({
         </div>
       )}
 
-      <Link to={`/productos/confecciones/${nombre}`}>
+      <Link href={`/productos/confecciones/${nombre}`}>
         <img
           className="main-image"
           src={

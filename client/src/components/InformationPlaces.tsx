@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import { sizeMedia } from '../styles/mediaQuerys'
-import { LinkStyled } from '../styles/SharedStyles'
+import { sizeMedia } from '../../styles/mediaQuerys'
+import { LinkStyled } from '../../styles/SharedStyles'
 import { H2 } from './text'
 import { Span } from './text/Span'
 
@@ -96,11 +96,11 @@ export const InformationCard = ({
 
   return (
     <LinkStyled
-      to={{
+      href={{
         pathname: `/productos/${convertSlug()}`,
-        state: {
+        /* state: {
           backGroundImage,
-        },
+        }, */
       }}
     >
       <CardInformation>

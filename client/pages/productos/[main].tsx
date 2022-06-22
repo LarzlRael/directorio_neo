@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react'
-
-import { Indicator } from '../layout/Indicator'
-import { Cards } from '../components/widgets/card/Cards'
-import { HeaderBlack } from '../layout/HeaderBlack'
-import styled from 'styled-components'
-
-import { v4 as uuidv4 } from 'uuid'
-import { Loading } from '../components/widgets/loadings/Loading'
-import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { sizeMedia } from '../../styles/mediaQuerys'
-import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
 import { RouteComponentProps } from 'react-router-dom'
-import useAxiosAuth from '../hooks/useAxios'
+import { v4 as uuidv4 } from 'uuid'
+import styled from 'styled-components'
+import { useDocumentTitle } from '../../src/hooks/useDocumentTitle'
+import useAxiosAuth from '../../src/hooks/useAxios'
+import { PymeInterfaceResponse } from '../../src/interfaces/pymeResponse'
+import { HeaderBlack } from '../../src/layout/HeaderBlack'
+import { Indicator } from '../../src/components/Indicator'
 import { Formik, Form, Field } from 'formik'
-import { Button } from '../components/buttons/Button'
+import { departamentos } from '../../src/data/infoData'
+import { primaryColor } from '../../src/context/themeColors'
 import { IoSearch } from 'react-icons/io5'
-
-import { validateArray } from '../components/utils/validation/validation'
-import { Label } from '../components/text/Label'
-import { primaryColor } from '../context/themeColors'
-import { departamentos } from '../data/infoData'
+import { validateArray } from '../../src/components/utils/validation/validation'
+import { Cards } from '../../src/components/widgets/card/Cards'
+import { Label } from '../../src/components/text/Label'
+import { Loading } from '../../src/components/widgets/loadings/Loading'
+import { sizeMedia } from '../../styles/mediaQuerys'
+import { Button } from '../../src/components/buttons/Button'
 
 interface SingleLocationProps extends RouteComponentProps<any> {
   /* label?: string */
 }
 
-export const SingleLocation = (props: SingleLocationProps) => {
+const SingleLocation = (props: SingleLocationProps) => {
   useDocumentTitle('Categorias')
   const [url, setUrl] = useState('/pymes')
 
@@ -166,3 +163,5 @@ const GridContainer = styled.div`
     padding: 1rem;
   }
 `
+
+export default SingleLocation
