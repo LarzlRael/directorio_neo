@@ -2,7 +2,7 @@ import React from 'react'
 import { Indicator } from '../components/Indicator'
 import { useContext, useEffect } from 'react'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { HeaderBlack } from './HeaderBlack'
+
 import { PymeContext } from '../context/PymeContext'
 import { useParams } from 'react-router'
 import { ContacInfo } from './pymeDetails/ContacInfo'
@@ -12,6 +12,7 @@ import { capitalizeFirstLetter } from './utils/utils'
 import { ImageSlider } from './pymeDetails/ImageSlider'
 import useAxiosAuth from '../hooks/useAxios'
 import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
+import { HeaderBlack } from '../layout/HeaderBlack';
 
 export const PlaceDetails = () => {
   /* const { onePyme, notFound } = useContext(PymeContext) */
