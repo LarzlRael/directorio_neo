@@ -14,14 +14,14 @@ $padding-responsive: 1rem;
         width: 90%;
     }
 
-    .section-title {
+    .one-place__section-title {
         width: 70%;
 
         @include media(xs_sm) {
             width: 100%;
         }
 
-        .section-container {
+        .one-place__section-container {
             padding: 0rem 2rem 2rem 2rem;
             @include media(sm) {
                 padding: 0rem $padding-responsive $padding-responsive $padding-responsive;
@@ -29,7 +29,7 @@ $padding-responsive: 1rem;
             hr {
                 margin: 1rem 0;
             }
-            .descripction {
+            .one-place__description {
                 margin-top: 1rem;
                 label {
                     font-size: 30px;

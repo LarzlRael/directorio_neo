@@ -57,7 +57,7 @@ export const SearchFilter = () => {
   }
 
   return (
-    <div className="SearchFilter">
+    <div className="search-filter">
       <H2 marginResponsive="0" fontSize="2rem" fontWeight="bold" color="#fff">
         Descubre las pymes que trabajan con nosotros
       </H2>
@@ -78,19 +78,19 @@ export const SearchFilter = () => {
                 id="category"
                 name="category"
                 placeholder="¿Donde estas buscando?"
-                className="inputSearch"
+                className="input-search"
               />
               <Field
                 id="category2"
                 name="category2"
                 placeholder="Todas las categorias"
-                className="inputSearch"
+                className="input-search"
               />
               <Field
                 id="search"
                 name="search"
                 placeholder="¿Donde estas buscando?"
-                className="inputSearch"
+                className="input-search"
               />
             </div>
 

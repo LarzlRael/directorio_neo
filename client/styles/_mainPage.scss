@@ -39,7 +39,7 @@ body {
     }
 }
 
-.SearchFilter {
+.search-filter {
     align-items: center;
     align-self: center;
 
@@ -84,29 +84,25 @@ $width: 80%;
     }
 }
 
-.logoContainer {
-    .logName{
+.logo-container {
+    .logo-container__logo-name {
         display: flex;
-        justify-content: space-between;
+        flex-direction: column;
+        /* justify-content: center;
+            align-items: center; */
+        @include media(xs_sm) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
     }
     @include media(xs_sm) {
         width: 100%;
     }
 }
-.logoName {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
-    @include media(xs_sm) {
-        display: flex;
-        flex-direction: row;
 
-        justify-content: space-between;
-        align-items: center;
-    }
-}
-.logoNameDark {
+.logo-name-dark {
     display: flex;
     flex-direction: column;
     /* justify-content: center;

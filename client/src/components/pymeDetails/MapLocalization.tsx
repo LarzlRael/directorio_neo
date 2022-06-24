@@ -3,7 +3,6 @@ import { IoMapOutline } from 'react-icons/io5'
 
 import ReactMapGL from 'react-map-gl'
 import { useDirectionsMap } from '../../hooks/useDirectionsMap'
-import { P, Label } from '../text/'
 
 import { CardDescription } from '../widgets/card/'
 

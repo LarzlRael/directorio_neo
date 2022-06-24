@@ -4,7 +4,9 @@ import { sizeMedia } from '../../styles/mediaQuerys'
 import { LinkStyled } from '../../styles/SharedStyles'
 import { H2 } from './text'
 import { Span } from './text/Span'
-
+import { useRouter } from 'next/router'
+import { useDispatch } from 'react-redux'
+import { changeIndicator } from '../store/slices/slices'
 export interface InformationPlacesI {
   title: string
   backGroundImage?: string
@@ -63,6 +65,7 @@ const ImageBrackGround = styled.div<{
 `
 
 export const InformationPlaces = ({ places, title, subtitle }: Props) => {
+  const router = useRouter()
   return (
     <div className="infomationContainer">
       <H2
@@ -90,26 +93,26 @@ export const InformationPlaces = ({ places, title, subtitle }: Props) => {
 export const InformationCard = ({
   place: { title, backGroundImage, icon },
 }: PropsInfor) => {
-  const convertSlug = (): string => {
-    return title.replace(' ', '-').toLowerCase()
+  const convertSlug = title.replace(' ', '-').toLowerCase()
+  const dispatch = useDispatch()
+  const router = useRouter()
+  const onClick = (e: any) => {
+    e.preventDefault()
+    router.push(`/productos/${convertSlug}`)
+    dispatch(
+      changeIndicator({
+        titleIndicator: title,
+        urlImageIndicator: backGroundImage!,
+      }),
+    )
   }
-
   return (
-    <LinkStyled
-      href={{
-        pathname: `/productos/${convertSlug()}`,
-        /* state: {
-          backGroundImage,
-        }, */
-      }}
-    >
-      <CardInformation>
-        <ImageBrackGround background={backGroundImage!} />
-        <Icon className={icon} />
-        <Span color="white" fontSize="18px" margin="10px">
-          {title}
-        </Span>
-      </CardInformation>
-    </LinkStyled>
+    <CardInformation onClick={onClick}>
+      <ImageBrackGround background={backGroundImage!} />
+      <Icon className={icon} />
+      <Span color="white" fontSize="18px" margin="10px">
+        {title}
+      </Span>
+    </CardInformation>
   )
 }

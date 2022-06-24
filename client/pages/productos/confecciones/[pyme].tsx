@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid'
-import styled from 'styled-components'
-import { useDocumentTitle } from '../../src/hooks/useDocumentTitle'
-import useAxiosAuth from '../../src/hooks/useAxios'
-import { PymeInterfaceResponse } from '../../src/interfaces/pymeResponse'
-import { HeaderBlack } from '../../src/layout/HeaderBlack'
-import { Indicator } from '../../src/components/Indicator'
+import useAxiosAuth from '../../../src/hooks/useAxios'
+import { useDocumentTitle } from '../../../src/hooks/useDocumentTitle'
+import { PymeInterfaceResponse } from '../../../src/interfaces/pymeResponse'
+import { HeaderBlack } from '../../../src/layout/HeaderBlack'
+import { Indicator } from '../../../src/components/Indicator'
 import { Formik, Form, Field } from 'formik'
-import { departamentos } from '../../src/data/infoData'
-import { primaryColor } from '../../src/context/themeColors'
+import { departamentos } from '../../../src/data/infoData'
+import { Button } from '../../../src/components/buttons/Button'
 import { IoSearch } from 'react-icons/io5'
-import { validateArray } from '../../src/components/utils/validation/validation'
-import { Cards } from '../../src/components/widgets/card/'
-import { Label } from '../../src/components/text/Label'
-import { Loading } from '../../src/components/widgets/loadings/Loading'
-import { sizeMedia } from '../../styles/mediaQuerys'
-import { Button } from '../../src/components/buttons/Button'
+import { validateArray } from '../../../src/components/utils/validation/validation'
+import { Label } from '../../../src/components/text/'
+import { Loading } from '../../../src/components/widgets/loadings/Loading'
+import styled from 'styled-components'
+import { sizeMedia } from '../../../styles/mediaQuerys'
+import { Cards } from '../../../src/components/widgets/card/Cards'
 
-interface SingleLocationProps {}
+interface SingleLocationProps {
+  /* label?: string */
+}
 
 const SingleLocation = (props: SingleLocationProps) => {
   useDocumentTitle('Categorias')
@@ -51,7 +50,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   }
   const initialValues = {
     nombre: '',
-    departamentSelected: '',
+    departamentSelected: departamentos[0],
   }
   useEffect(() => {
     reload()
@@ -106,7 +105,7 @@ const SingleLocation = (props: SingleLocationProps) => {
 
             <Button
               type="submit"
-              background={primaryColor}
+              background="black"
               icon={<IoSearch color="#fff" height="16px" width="16px" />}
             >
               Buscar
@@ -119,7 +118,7 @@ const SingleLocation = (props: SingleLocationProps) => {
         validateArray(preconfigArray(allPymes)) ? (
           <GridContainer className="cards-container">
             {preconfigArray(allPymes).map((pyme) => (
-              <Cards {...pyme} key={uuidv4()} />
+              <Cards {...pyme} />
             ))}
           </GridContainer>
         ) : (
@@ -152,5 +151,4 @@ const GridContainer = styled.div`
     padding: 1rem;
   }
 `
-
 export default SingleLocation

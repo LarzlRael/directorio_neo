@@ -32,10 +32,6 @@ interface PropsH2 {
   textAlign?: 'center' | 'start' | 'end' | 'left' | 'right' | 'justify'
   marginResponsive?: string
 }
-export const H2 = (props: PropsH2) => {
-  return (
-    <h2>
-      <H2Styled {...props}>{props.children}</H2Styled>
-    </h2>
-  )
-}
+export const H2 = (props: PropsH2) => (
+  <H2Styled {...props}>{props.children}</H2Styled>
+)

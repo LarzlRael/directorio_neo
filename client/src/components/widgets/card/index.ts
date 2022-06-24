@@ -1,3 +1,5 @@
-import { IoCard } from 'react-icons/io5';
+import { IoCard } from 'react-icons/io5'
 import { CardDescription } from './CardDescription'
-export { IoCard, CardDescription }
+import { Cards } from './Cards'
+
+export { IoCard, CardDescription, Cards }

@@ -8,6 +8,7 @@ import { sizeMedia } from '../../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { useWindowSize } from '../hooks/useWindows'
 import Link from 'next/link'
+import { Label } from '../components/text'
 
 const HeaderContainer = styled.div`
   position: relative;
@@ -69,7 +70,7 @@ const LabelLogo = styled(Link)<{
   }
 `
 
-const LabelLink = styled(Link)`
+const LabelLink = styled.a`
   font-size: 15px;
   margin: 0 20px;
   font-size: 0.9rem;
@@ -122,26 +123,20 @@ export const Header = () => {
 
   return (
     <HeaderContainer>
-      <div className="logoContainer">
-        <div className="logoName">
-          {/* <Link
-            href="/qe"
+      <div className="logo-container">
+        <div className="logo-container__logo-name pointer">
+          <img
             style={{
-              textDecoration: 'none',
+              height: '35px',
+              width: '100px',
             }}
-          > */}
-            <img
-              style={{
-                height: '35px',
-                width: '100px',
-              }}
-              src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
-              alt="Nego LOGO"
-            />
-            <LabelLogo fontSize="1.5rem" href="/xd">
-              <span>{appName}</span>
-            </LabelLogo>
-          {/* </Link> */}
+            src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
+            alt="Nego LOGO"
+          />
+
+          <Label color="white" fontSize="1.6rem">
+            {appName}
+          </Label>
 
           <MenuIconContainer>
             <IoMenuOutline

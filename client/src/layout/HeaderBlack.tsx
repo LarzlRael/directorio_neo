@@ -65,7 +65,7 @@ const Links = styled.div`
   }
 `
 
-const LabelLink = styled(Link)<{ blackTheme: boolean }>`
+const LabelLink = styled.a<{ blackTheme: boolean }>`
   font-size: 15px;
   margin: 0 20px;
   font-size: 0.9rem;
@@ -100,14 +100,14 @@ export const HeaderBlack = () => {
   return (
     <HeaderMainContainer blackTheme={className}>
       <HeaderContainer>
-        <div className="logoContainer">
+        <div className="logo-container pointer">
           <Link
             href="/"
             style={{
               textDecoration: 'none',
             }}
           >
-            <div className="logoNameDark">
+            <div className="logo-name-dark">
               <img
                 style={{
                   height: '35px',

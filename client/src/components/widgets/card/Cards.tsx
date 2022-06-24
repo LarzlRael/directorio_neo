@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import React from 'react'
+import Link from 'next/link'
 import {
   IoCheckmarkCircle,
   IoLogoFacebook,
@@ -25,7 +25,7 @@ export const Cards = ({
     <div
       className={`single-card flex ${
         verificado === 'verificado' && 'verificado'
-      }`}
+      } pointer` }
     >
       {verificado === 'verificado' && (
         <div className="check">
@@ -33,7 +33,7 @@ export const Cards = ({
         </div>
       )}
 
-      <Link href={`/productos/confecciones/${nombre}`}>
+      <Link href={`/productos/details/${nombre}`}>
         <img
           className="main-image"
           src={

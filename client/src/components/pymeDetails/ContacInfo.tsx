@@ -10,7 +10,7 @@ interface ContactProps {
 
 export const ContacInfo = ({ telefono, email }: ContactProps) => {
     return (
-        <div className="border-box contact-information">
+        <div className="contact-information border-box ">
             <label className="title-content">
                 Informacion de contacto
             </label>

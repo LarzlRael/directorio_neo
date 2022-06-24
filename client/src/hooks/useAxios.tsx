@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios, { AxiosRequestConfig } from 'axios'
-axios.defaults.baseURL = process.env.SERVER_URL
+axios.defaults.baseURL = process.env.NEXT_PUBLIC_SERVER_URL
 
 /* axios.interceptors.request.use(
   (config) => {

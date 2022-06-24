@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom' */
 import styled from 'styled-components'
 import { sizeMedia } from '../../styles/mediaQuerys'
 import { useRouter } from 'next/router'
+import { useSelector, useDispatch } from 'react-redux'
+import { RootState } from '../store/store'
 const Label = styled.label<{
   fontSize?: string
   marginbottom?: string
@@ -40,45 +42,25 @@ const Bread = styled.div`
   }
 `
 
-interface RouteParams {
-  title: string
-}
-interface StateType {
-  backGroundImage: string
-}
-interface Props {
-  label?: string
-}
-export const Indicator = ({ label }: Props) => {
-  const router = useRouter()
-  /* router.pa
-  const { state } = useLocation<StateType>() */
-
-  const { id } = router.query
-
-  const { main } = router.query
-  /* const title = main?.replace('-', ' ') */
+export const Indicator = () => {
+  const { indicator } = useSelector((state: RootState) => state.counter)
 
   return (
-    <BreadContainer
-      backGroundImage={
-        'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171__340.jpg'
-      }
-    >
+    <BreadContainer backGroundImage={indicator.urlImageIndicator}>
       <Bread className="bread">
         <div className="pointer">
           <IoChevronBack
             width="25px"
             height="25px"
             color="white"
-            onClick={history.back}
+            onClick={() => history.back()}
           />
         </div>
         <Label color="white" fontSize="2.3rem">
-          {label ? label : 'title'}
+          {indicator.titleIndicator}
         </Label>
         <Label fontSize=".9rem" color="white">
-          Home / {label ? label : 'title'} {'nombre' && ' / ' + 'nombre'}
+          Home / {indicator.titleIndicator}
         </Label>
       </Bread>
     </BreadContainer>

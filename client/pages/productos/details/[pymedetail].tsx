@@ -1,38 +1,38 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
-import { Indicator } from '../layout/Indicator'
-import { useEffect } from 'react'
-import { useDocumentTitle } from '../hooks/useDocumentTitle'
-import { HeaderBlack } from '../layout/HeaderBlack'
-import { ContacInfo } from './pymeDetails/ContacInfo'
-import { Profile } from './pymeDetails/Profile'
-import { MapLocalization } from './pymeDetails/MapLocalization'
-import { capitalizeFirstLetter } from './utils/utils'
-import { ImageSlider } from './pymeDetails/ImageSlider'
-import { Loading } from './widgets/loadings/Loading'
-import { PymeInterfaceResponse } from '../interfaces/pymeResponse'
-import { RouteComponentProps } from 'react-router-dom'
-import useAxiosAuth from '../hooks/useAxios'
-import { H2, Span, P } from './text'
+import { useDocumentTitle } from '../../../src/hooks/useDocumentTitle'
+import { Loading } from '../../../src/components/widgets/loadings/Loading'
+import { HeaderBlack } from '../../../src/layout/HeaderBlack'
+import { Indicator } from '../../../src/components/Indicator'
+import { capitalizeFirstLetter } from '../../../src/components/utils/utils'
 
-interface PlaceDetailsProps
-  extends RouteComponentProps<{ id: string; nombre: string; title: string }> {
-  /* label?: string */
-}
+import { Span, P, H2 } from '../../../src/components/text'
+import {
+  ContacInfo,
+  MapLocalization,
+  Profile,
+  ImageSlider,
+} from '../../../src/components/pymeDetails/'
 
-export const PymeDetails = (props: PlaceDetailsProps) => {
-  let { nombre } = props.match.params
+import useAxiosAuth from '../../../src/hooks/useAxios'
+import { PymeInterfaceResponse } from '../../../src/interfaces/pymeResponse'
+
+import { useRouter } from 'next/router'
+
+const PymeDetails = () => {
+  const router = useRouter()
+  let { pymedetail } = router.query
 
   const { response: onePyme, loading, reload } = useAxiosAuth<
     PymeInterfaceResponse
   >({
-    url: `/pymes/${nombre}`,
+    url: `/pymes/${pymedetail}`,
     method: 'GET',
   })
 
   useEffect(() => {
     reload()
-  }, [nombre])
+  }, [pymedetail])
 
   useDocumentTitle(onePyme?.nombre!)
 
@@ -40,7 +40,7 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
     <>
       {loading ? (
         <Loading />
-      ) : !onePyme !== null ? (
+      ) : onePyme !== null ? (
         <div
           style={{
             background: '#F3F3F3',
@@ -48,10 +48,10 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
         >
           <HeaderBlack />
 
-          <Indicator {...props} />
+          <Indicator />
           <div className="one-place">
-            <div className="section-title">
-              <div className="border-box section-container">
+            <div className="one-place__section-title">
+              <div className="one-place__section-container border-box ">
                 <H2
                   color="#000"
                   textAlign="start"
@@ -65,6 +65,7 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
 
                 <ImageSlider
                   urlImages={
+                    onePyme?.urlImages !== undefined &&
                     onePyme?.urlImages.length !== 0 &&
                     onePyme?.urlImages.length !== undefined
                       ? onePyme!.urlImages
@@ -74,7 +75,7 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
                   }
                 />
 
-                <div className="descripction">
+                <div className="one-place__description">
                   <Span
                     fontSize="1.5rem"
                     textAlign="start"
@@ -115,3 +116,4 @@ export const PymeDetails = (props: PlaceDetailsProps) => {
     </>
   )
 }
+export default PymeDetails
