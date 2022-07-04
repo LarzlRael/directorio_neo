@@ -66,26 +66,28 @@ export const ImageSlider = ({ urlImages }: PropsSliderImages) => {
     }; */
   return (
     <>
-      <div className="images-container">
+      <div className="ImageSlider">
         <div
-          className={`main-image pointer ${animation ? 'fadeInAnimation' : ''}`}
+          className={`ImageSlider__main-image pointer ${
+            animation ? 'fadeInAnimation' : ''
+          }`}
           onAnimationEnd={() => setAnimation(false)}
           onClick={changeStatexd}
         >
           <img
-            className="main-current-image"
+            className="ImageSlider__main-current-image"
             src={currentImage.currentUrl}
             alt=""
           />
         </div>
 
-        <div className="images-info">
+        <div className="ImageSlider__images-info">
           {urlImages.map((image, i) => (
-            <div className="image-item pointer" key={i}>
+            <div className="ImageSlider__image-item pointer" key={i}>
               <img
                 src={`${image}`}
                 alt="que fue :D"
-                onClick={() => changeImage(`${image}`, i)}
+                onClick={() => changeImage(image, i)}
                 onAnimationEnd={() => setAnimation(false)}
               />
             </div>

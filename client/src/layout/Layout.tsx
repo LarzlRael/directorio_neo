@@ -47,7 +47,7 @@ export const Layout = ({ children }: LayoutProps) => {
         <title>Pyme</title>
       </Head>
       <div className="mainPage">
-        <Header />
+        <Header sticky={false} />
         <SearchFilter />
       </div>
       {children}

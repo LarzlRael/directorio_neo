@@ -22,11 +22,15 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "incremental": true,
+    
   },
   "include": [
-    "src"
-, "pages/main-page.tsx", "styles"  ],
+    "src",
+    "pages/main-page.tsx",
+    "styles"
+  ],
   "exclude": [
     "node_modules"
   ]

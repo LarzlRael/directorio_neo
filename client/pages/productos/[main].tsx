@@ -17,6 +17,7 @@ import { Label } from '../../src/components/text/Label'
 import { Loading } from '../../src/components/widgets/loadings/Loading'
 import { sizeMedia } from '../../styles/mediaQuerys'
 import { Button } from '../../src/components/buttons/Button'
+import { Header } from '../../src/layout/Header'
 
 interface SingleLocationProps {}
 
@@ -70,7 +71,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   }
   return (
     <div>
-      <HeaderBlack />
+      <Header darkMenu={true} sticky={true} />
 
       <Indicator {...props} />
 
@@ -89,7 +90,7 @@ const SingleLocation = (props: SingleLocationProps) => {
               id="nombre"
               name="nombre"
               placeholder="Buscar Pyme o categoria"
-              className="inputSearch"
+              className="input-search"
             />
             {/* <Dropdown
               options={departamentos}

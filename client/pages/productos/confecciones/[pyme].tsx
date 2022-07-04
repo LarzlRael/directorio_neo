@@ -14,6 +14,7 @@ import { Loading } from '../../../src/components/widgets/loadings/Loading'
 import styled from 'styled-components'
 import { sizeMedia } from '../../../styles/mediaQuerys'
 import { Cards } from '../../../src/components/widgets/card/Cards'
+import { Header } from '../../../src/layout/Header'
 
 interface SingleLocationProps {
   /* label?: string */
@@ -69,7 +70,7 @@ const SingleLocation = (props: SingleLocationProps) => {
   }
   return (
     <div>
-      <HeaderBlack />
+      {/* <Header sticky={true} /> */}
 
       <Indicator {...props} />
 

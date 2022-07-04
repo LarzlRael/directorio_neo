@@ -18,6 +18,7 @@ import useAxiosAuth from '../../../src/hooks/useAxios'
 import { PymeInterfaceResponse } from '../../../src/interfaces/pymeResponse'
 
 import { useRouter } from 'next/router'
+import { Header } from '../../../src/layout/Header'
 
 const PymeDetails = () => {
   const router = useRouter()
@@ -46,7 +47,7 @@ const PymeDetails = () => {
             background: '#F3F3F3',
           }}
         >
-          <HeaderBlack />
+          {/* <Header sticky={true} /> */}
 
           <Indicator />
           <div className="one-place">

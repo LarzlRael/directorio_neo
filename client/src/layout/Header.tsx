@@ -9,16 +9,18 @@ import { primaryColor } from '../context/themeColors'
 import { useWindowSize } from '../hooks/useWindows'
 import Link from 'next/link'
 import { Label } from '../components/text'
+import Image from 'next/image'
 
 const HeaderContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: space-between;
-  color: white;
+
   width: 1000px;
   max-width: 1000px;
-  margin: 3rem auto;
+  margin: 0 auto;
   /*  */
+  /* padding: 1.5rem 0; */
   align-items: center;
   transition: 0.3s ease all;
 
@@ -32,58 +34,6 @@ const HeaderContainer = styled.div`
   }
 `
 
-const Links = styled.div`
-  @media ${sizeMedia('xs_sm')} {
-    background: ${primaryColor};
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 3rem;
-
-    transition: 0.3s ease all;
-    width: 100%;
-    z-index: 100;
-    margin-top: 1rem;
-
-    &.open-menu {
-      transform: translate(0%);
-    }
-    &.close-menu {
-      transform: translate(-130%);
-    }
-  }
-`
-
-const LabelLogo = styled(Link)<{
-  fontSize?: string
-  show?: boolean
-}>`
-  font-size: ${({ fontSize }) => (fontSize ? fontSize : '13px')};
-  text-decoration: none;
-  display: ${({ show }) => (show ? 'none' : 'block')};
-  color: white;
-
-  @media ${sizeMedia('xs_sm')} {
-    display: ${({ show }) => (show ? 'none' : 'block')};
-    color: white;
-    margin-left: 1rem;
-  }
-`
-
-const LabelLink = styled.a`
-  font-size: 15px;
-  margin: 0 20px;
-  font-size: 0.9rem;
-  text-decoration: none;
-  color: white;
-
-  @media ${sizeMedia('xs_sm')} {
-    font-size: 0.9rem;
-    margin: 10px 1rem;
-    color: white;
-  }
-`
-
 const MenuIconContainer = styled.div`
   display: none;
 
@@ -94,15 +44,58 @@ const MenuIconContainer = styled.div`
   }
 `
 
-export const Header = () => {
-  const [menu, setShowMenu] = useState(false)
+interface PropsHeader {
+  darkMenu?: boolean
+  sticky: boolean
+}
+export const Header = ({ darkMenu = false, sticky }: PropsHeader) => {
   const { windowSize } = useWindowSize()
+  const [headerState, setHeaderState] = useState({
+    menu: false,
+    darkMenuS: darkMenu,
+    changeBackground: false,
+  })
+  const { menu, darkMenuS, changeBackground } = headerState
+  /* const [menu, setShowMenu] = useState(false)
+  const [darkMenuState, setdarkMenuState] = useState(darkMenu)
+  const [changeBackground, setChangeBackground] = useState(false) */
+  const handleScroll = () => {
+    if (window.pageYOffset > 0) {
+      if (!changeBackground) {
+        setHeaderState({
+          ...headerState,
+          changeBackground: true,
+          darkMenuS: !darkMenu,
+        })
+      }
+    } else {
+      setHeaderState({
+        ...headerState,
+        changeBackground: false,
+        darkMenuS: !darkMenu,
+      })
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      if (sticky) {
+        handleScroll()
+      }
+    })
+  }, [])
 
   const showMenu = () => {
-    setShowMenu(true)
+    setHeaderState({
+      ...headerState,
+      menu: true,
+    })
   }
   const hideMenu = () => {
-    setShowMenu(false)
+    setHeaderState({
+      ...headerState,
+      menu: false,
+    })
   }
   useEffect(() => {
     if (windowSize.width < 768) {
@@ -110,7 +103,6 @@ export const Header = () => {
     } else {
       hideMenu()
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [windowSize.width])
 
   const linkClickeable = () => {
@@ -122,47 +114,58 @@ export const Header = () => {
   }
 
   return (
-    <HeaderContainer>
-      <div className="logo-container">
-        <div className="logo-container__logo-name pointer">
-          <img
-            style={{
-              height: '35px',
-              width: '100px',
-            }}
-            src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
-            alt="Nego LOGO"
-          />
-
-          <Label color="white" fontSize="1.6rem">
-            {appName}
-          </Label>
-
-          <MenuIconContainer>
-            <IoMenuOutline
-              height="35px"
-              width="35px"
-              color="#FFF"
-              onClick={menu ? hideMenu : showMenu}
+    <div
+      className={
+        sticky
+          ? `Header-container ${
+              changeBackground ? 'Header-container--background' : ''
+            }`
+          : ''
+      }
+    >
+      <HeaderContainer>
+        <div className="logo-container">
+          <div className="logo-container__logo-name pointer">
+            <Image
+              width={100}
+              height={35}
+              src="https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png"
+              alt="Nego LOGO"
             />
-          </MenuIconContainer>
-        </div>
-      </div>
 
-      <Links className={menu ? 'open-menu' : 'close-menu'}>
-        <LabelLink onClick={linkClickeable} href="/333">
-          Inicio
-        </LabelLink>
-        <LabelLink href="/test2" onClick={linkClickeable}>
-          Listado
-        </LabelLink>{' '}
-        <LabelLink href="/test3" onClick={linkClickeable}>
-          Categorias
-        </LabelLink>
-        <LabelLink href="/test4" onClick={linkClickeable}>
-          Mi cuenta
-        </LabelLink>
-      </Links>
-    </HeaderContainer>
+            <Label color={darkMenuS ? 'black' : 'white'} fontSize="1.6rem">
+              {appName}
+            </Label>
+
+            <MenuIconContainer>
+              <IoMenuOutline
+                height="35px"
+                width="35px"
+                onClick={menu ? hideMenu : showMenu}
+              />
+            </MenuIconContainer>
+          </div>
+        </div>
+    {/* todo revisar */}
+        <div
+          className={`Header-links  ${
+            !darkMenuS ? 'Header-links--white' : 'Header-links--black'
+          }  ${menu ? 'open-menu' : 'close-menu'}`}
+        >
+          <Link onClick={linkClickeable} href="/333">
+            Inicio
+          </Link>
+          <Link href="/test2" onClick={linkClickeable}>
+            Listado
+          </Link>
+          <Link href="/test3" onClick={linkClickeable}>
+            Categorias
+          </Link>
+          <Link href="/auth/login" onClick={linkClickeable}>
+            Mi cuenta
+          </Link>
+        </div>
+      </HeaderContainer>
+    </div>
   )
 }

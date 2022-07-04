@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 import {
   IoHeart,
@@ -45,11 +46,12 @@ export const Profile = ({
 
           <div className="info-profile flex">
             <div className="image">
-              <img
+              <Image
+                layout="fill"
                 src={
                   urlProfile
                     ? urlProfile
-                    : 'https://cdn.iconscout.com/icon/premium/png-256-thumb/profile-1506810-1278719.png'
+                    : '/public/images/profile-image.webp'
                 }
                 style={{
                   borderRadius: '100%',

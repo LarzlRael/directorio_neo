@@ -12,7 +12,7 @@ import {
 } from '../../../interfaces/pymeResponse'
 import { Label } from '../../text'
 import { capitalizeFirstLetter } from '../../utils/utils'
-
+import Image from 'next/image'
 
 export const Cards = ({
   nombre,
@@ -25,7 +25,7 @@ export const Cards = ({
     <div
       className={`single-card flex ${
         verificado === 'verificado' && 'verificado'
-      } pointer` }
+      } pointer`}
     >
       {verificado === 'verificado' && (
         <div className="check">
@@ -34,12 +34,13 @@ export const Cards = ({
       )}
 
       <Link href={`/productos/details/${nombre}`}>
-        <img
+        <Image
+          layout="fill"
           className="main-image"
           src={
             urlImages[0]
               ? urlImages[0]
-              : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRu5mpvN1d5PpiB_WBM_XZcr-m2fP1r1kGwbaMXNwOuSpCeNmh95WBTjFwiUaECoWX0oLI&usqp=CAU'
+              : '/public/images/no-image.jpeg'
           }
           alt={nombre}
         />

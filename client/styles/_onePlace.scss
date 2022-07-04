@@ -162,13 +162,13 @@ $padding-responsive: 1rem;
     box-shadow: 0px 2px 1px -2px #000000;
 }
 
-.images-info {
+.ImageSlider__images-info {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
     gap: 1rem;
     margin-top: 1rem;
 
-    .image-item {
+    .ImageSlider__image-item {
         width: 100%;
         height: 100px;
 
@@ -179,9 +179,17 @@ $padding-responsive: 1rem;
     }
 }
 
-.main-image {
+.ImageSlider__main-image {
     position: relative;
 }
+.ImageSlider__main-current-image {
+    width: 100%;
+    height: 100%;
+    @include media(sm_xs) {
+        height: 200px;
+    }
+}
+
 .flechas {
     position: absolute;
 
@@ -205,12 +213,5 @@ $padding-responsive: 1rem;
     }
     100% {
         opacity: 1;
-    }
-}
-.main-current-image {
-    width: 100%;
-    height: 100%;
-    @include media(sm_xs) {
-        height: 200px;
     }
 }

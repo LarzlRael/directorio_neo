@@ -6,6 +6,7 @@ import { sizeMedia } from '../../styles/mediaQuerys'
 import { primaryColor } from '../context/themeColors'
 import { Label } from '../components/text/Label'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const HeaderMainContainer = styled.div<{
   blackTheme: boolean
@@ -108,11 +109,9 @@ export const HeaderBlack = () => {
             }}
           >
             <div className="logo-name-dark">
-              <img
-                style={{
-                  height: '35px',
-                  width: '100px',
-                }}
+              <Image
+                height={35}
+                width={100}
                 src={
                   className
                     ? 'https://res.cloudinary.com/daij4l3is/image/upload/v1649110421/assets/dggjx7ttzzzier7zoqic.png'
@@ -123,20 +122,10 @@ export const HeaderBlack = () => {
               <Label color={className ? 'white' : 'black'} fontSize="1.6rem">
                 {appName}
               </Label>
-
-              {/* <MenuIconContainer>
-              <MenuOutline
-                height="35px"
-                width="35px"
-                color="#FFF"
-                onClick={menu ? hideMenu : showMenu}
-              />
-            </MenuIconContainer> */}
             </div>
           </Link>
         </div>
-        {/*   open-menu
-            close-menu */}
+
         <Links className={menu ? 'open-menu' : 'close-menu'}>
           {/* <Links className={menu ? 'close-menu' : 'open-menu'}> */}
 
@@ -152,9 +141,7 @@ export const HeaderBlack = () => {
             Categorias
           </LabelLink>
 
-          <LabelLink blackTheme={className} href="/">
-            Mi cuenta
-          </LabelLink>
+          <Link href="/auth/login">Mi cuenta</Link>
         </Links>
       </HeaderContainer>
     </HeaderMainContainer>
